@@ -1,22 +1,24 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2013 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
 return array(
-    'zf-versioning' => array(
+    'api-tools-versioning' => array(
         'content-type' => array(
             // Array of regular expressions to apply against the content-type 
             // header. All capturing expressions should be named:
             // (?P<name_to_capture>expression)
-            // Default: '#^application/vnd\.(?P<zf_ver_vendor>[^.]+)\.v(?P<zf_ver_version>\d+)\.(?P<zf_ver_resource>[a-zA-Z0-9_-]+)$#'
+            // Default: '#^application/vnd\.(?P<laminas_ver_vendor>[^.]+)\.v(?P<laminas_ver_version>\d+)\.(?P<laminas_ver_resource>[a-zA-Z0-9_-]+)$#'
             //
             // Example:
             // '#^application/vendor\.(?P<vendor>mwop)\.v(?P<version>\d+)\.(?P<resource>status|user)$#',
         ),
         'uri' => array(
-            // Array of routes that should prepend the "zf-versioning" route 
+            // Array of routes that should prepend the "api-tools-versioning" route 
             // (i.e., "/v:version"). Any route in this array will be chained to
             // that route, but can still be referenced by their route name.
             //
@@ -31,7 +33,7 @@ return array(
     ),
     'service_manager' => array(
         'invokables' => array(
-            'ZF\Versioning\VersionListener' => 'ZF\Versioning\VersionListener',
+            'Laminas\ApiTools\Versioning\VersionListener' => 'Laminas\ApiTools\Versioning\VersionListener',
         ),
     ),
 );

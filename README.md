@@ -1,7 +1,7 @@
-ZF Versioning
+Laminas Versioning
 =============
 
-ZF2 module for automating versioned URLs and Accept/Content-Type mediatypes.
+Laminas module for automating versioned URLs and Accept/Content-Type mediatypes.
 
 Enables:
 

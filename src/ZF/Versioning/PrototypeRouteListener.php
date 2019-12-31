@@ -1,16 +1,18 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2013 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Versioning;
+namespace Laminas\ApiTools\Versioning;
 
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventManagerInterface;
-use Zend\ModuleManager\Listener\ConfigListener;
-use Zend\ModuleManager\ModuleEvent;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\ModuleManager\Listener\ConfigListener;
+use Laminas\ModuleManager\ModuleEvent;
+use Laminas\Stdlib\ArrayUtils;
 
 class PrototypeRouteListener extends AbstractListenerAggregate
 {
@@ -48,9 +50,9 @@ class PrototypeRouteListener extends AbstractListenerAggregate
     /**
      * Listen to ModuleEvent::EVENT_MERGE_CONFIG
      *
-     * Looks for zf-versioning.url and router configuration; if both present,
+     * Looks for api-tools-versioning.url and router configuration; if both present,
      * injects the route prototype and adds a chain route to each route listed
-     * in the zf-versioning.url array.
+     * in the api-tools-versioning.url array.
      *
      * @param  ModuleEvent $e
      */
@@ -64,23 +66,23 @@ class PrototypeRouteListener extends AbstractListenerAggregate
         $config = $configListener->getMergedConfig(false);
 
         // Check for config keys
-        if (!isset($config['zf-versioning'])
+        if (!isset($config['api-tools-versioning'])
             || !isset($config['router'])
         ) {
             return;
         }
 
         // Do we need to inject a prototype?
-        if (!isset($config['zf-versioning']['uri'])
-            || !is_array($config['zf-versioning']['uri'])
-            || empty($config['zf-versioning']['uri'])
+        if (!isset($config['api-tools-versioning']['uri'])
+            || !is_array($config['api-tools-versioning']['uri'])
+            || empty($config['api-tools-versioning']['uri'])
         ) {
             return;
         }
 
         // Pre-process route list to strip out duplicates (often a result of
         // specifying nested routes)
-        $routes   = $config['zf-versioning']['uri'];
+        $routes   = $config['api-tools-versioning']['uri'];
         $filtered = array();
         foreach ($routes as $index => $route) {
             if (strstr($route, '/')) {
