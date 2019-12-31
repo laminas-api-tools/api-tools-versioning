@@ -1,24 +1,25 @@
 {
-    "name": "zfcampus/zf-versioning",
-    "description": "ZF2 Module providing listeners and route prototypes for implementing API versioning",
-    "type": "library",
+    "name": "laminas-api-tools/api-tools-versioning",
+    "description": "Laminas Module providing listeners and route prototypes for implementing API versioning",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
-        "zend",
+        "laminas",
+        "api-tools",
         "module",
         "rest"
     ],
-    "homepage": "http://apigility.org/",
+    "homepage": "https://api-tools.getlaminas.org",
     "support": {
-        "email": "apigility-users@zend.com",
-        "irc": "irc://irc.freenode.net/apigility",
-        "source": "https://github.com/zfcampus/zf-versioning",
-        "issues": "https://github.com/zfcampus/zf-versioning/issues"
+        "docs": "https://api-tools.getlaminas.org/documentation",
+        "issues": "https://github.com/laminas-api-tools/api-tools-versioning/issues",
+        "source": "https://github.com/laminas-api-tools/api-tools-versioning",
+        "rss": "https://github.com/laminas-api-tools/api-tools-versioning/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "repositories": [
-        { "type": "composer", "url": "https://packages.zendframework.com" }
-    ],
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
@@ -26,30 +27,34 @@
     },
     "require": {
         "php": ">=5.3.23",
-        "zendframework/zend-eventmanager": "~2.3",
-        "zendframework/zend-escaper": "~2.3",
-        "zendframework/zend-http": "~2.3",
-        "zendframework/zend-loader": "~2.3",
-        "zendframework/zend-modulemanager": "~2.3",
-        "zendframework/zend-mvc": "~2.3",
-        "zendframework/zend-uri": "~2.3",
-        "zendframework/zend-validator": "~2.3"
+        "laminas/laminas-escaper": "~2.3",
+        "laminas/laminas-eventmanager": "~2.3",
+        "laminas/laminas-http": "~2.3",
+        "laminas/laminas-loader": "~2.3",
+        "laminas/laminas-modulemanager": "~2.3",
+        "laminas/laminas-mvc": "~2.3",
+        "laminas/laminas-uri": "~2.3",
+        "laminas/laminas-validator": "~2.3",
+        "laminas/laminas-zendframework-bridge": "^1.0"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "*@dev",
-        "phpunit/PHPUnit": "3.7.*",
-        "satooshi/php-coveralls": ">=0.6.0",
-        "zendframework/zend-config": "~2.3",
-        "zendframework/zend-servicemanager": "~2.3",
-        "zendframework/zend-stdlib": "~2.3"
+        "laminas/laminas-config": "~2.3",
+        "laminas/laminas-servicemanager": "~2.3",
+        "laminas/laminas-stdlib": "~2.3",
+        "phpunit/phpunit": "3.7.*",
+        "satooshi/php-coveralls": ">=0.6.0"
     },
     "autoload": {
         "psr-4": {
-            "ZF\\Versioning\\": "src/",
-            "ZFTest\\Versioning\\": "test/"
+            "Laminas\\ApiTools\\Versioning\\": "src/",
+            "LaminasTest\\ApiTools\\Versioning\\": "test/"
         },
         "classmap": [
             "Module.php"
         ]
+    },
+    "replace": {
+        "zfcampus/zf-versioning": "self.version"
     }
 }
