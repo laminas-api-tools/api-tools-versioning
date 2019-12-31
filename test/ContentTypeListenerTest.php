@@ -1,17 +1,19 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Versioning;
+namespace LaminasTest\ApiTools\Versioning;
 
+use Laminas\ApiTools\Versioning\ContentTypeListener;
+use Laminas\EventManager\EventManager;
+use Laminas\Http\Request;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\RouteMatch;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\EventManager\EventManager;
-use Zend\Http\Request;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch;
-use ZF\Versioning\ContentTypeListener;
 
 class ContentTypeListenerTest extends TestCase
 {
@@ -65,8 +67,8 @@ class ContentTypeListenerTest extends TestCase
                 'status',
             ),
             array(
-                'application/vnd.zend.v2.user',
-                'zend',
+                'application/vnd.laminas.v2.user',
+                'laminas',
                 2,
                 'user',
             ),
@@ -84,18 +86,18 @@ class ContentTypeListenerTest extends TestCase
 
         $this->listener->onRoute($this->event);
         $routeMatch = $this->event->getRouteMatch();
-        $this->assertEquals($vendor, $routeMatch->getParam('zf_ver_vendor', false));
-        $this->assertEquals($version, $routeMatch->getParam('zf_ver_version', false));
-        $this->assertEquals($resource, $routeMatch->getParam('zf_ver_resource', false));
+        $this->assertEquals($vendor, $routeMatch->getParam('laminas_ver_vendor', false));
+        $this->assertEquals($version, $routeMatch->getParam('laminas_ver_version', false));
+        $this->assertEquals($resource, $routeMatch->getParam('laminas_ver_resource', false));
     }
 
     public function invalidDefaultContentTypes()
     {
         return array(
             'bad-prefix'                   => array('application/vendor.mwop.v1.status'),
-            'bad-version'                  => array('application/vnd.zend.2.user'),
-            'missing-version'              => array('application/vnd.zend.user'),
-            'missing-version-and-resource' => array('application/vnd.zend'),
+            'bad-version'                  => array('application/vnd.laminas.2.user'),
+            'missing-version'              => array('application/vnd.laminas.user'),
+            'missing-version-and-resource' => array('application/vnd.laminas'),
         );
     }
 
@@ -110,9 +112,9 @@ class ContentTypeListenerTest extends TestCase
 
         $this->listener->onRoute($this->event);
         $routeMatch = $this->event->getRouteMatch();
-        $this->assertFalse($routeMatch->getParam('zf_ver_vendor', false));
-        $this->assertFalse($routeMatch->getParam('zf_ver_version', false));
-        $this->assertFalse($routeMatch->getParam('zf_ver_resource', false));
+        $this->assertFalse($routeMatch->getParam('laminas_ver_vendor', false));
+        $this->assertFalse($routeMatch->getParam('laminas_ver_version', false));
+        $this->assertFalse($routeMatch->getParam('laminas_ver_resource', false));
     }
 
     public function validCustomContentTypes()
@@ -159,9 +161,9 @@ class ContentTypeListenerTest extends TestCase
             'default' => array(
                 'application/vnd.mwop.v1.status',
                 array(
-                    'zf_ver_vendor'   => 'mwop',
-                    'zf_ver_version'  => 1,
-                    'zf_ver_resource' => 'status',
+                    'laminas_ver_vendor'   => 'mwop',
+                    'laminas_ver_version'  => 1,
+                    'laminas_ver_resource' => 'status',
                 ),
             ),
             'custom' => array(
