@@ -1,16 +1,18 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Versioning\Factory;
+namespace LaminasTest\ApiTools\Versioning\Factory;
 
 use Interop\Container\ContainerInterface;
+use Laminas\ApiTools\Versioning\ContentTypeListener;
+use Laminas\ApiTools\Versioning\Factory\ContentTypeListenerFactory;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use ZF\Versioning\ContentTypeListener;
-use ZF\Versioning\Factory\ContentTypeListenerFactory;
 
 class ContentTypeListenerFactoryTest extends TestCase
 {
@@ -45,7 +47,7 @@ class ContentTypeListenerFactoryTest extends TestCase
     public function testCreatesEmptyContentTypeListenerIfNoVersioningContentTypeConfigPresent()
     {
         $this->container->has('config')->willReturn(true);
-        $this->container->get('config')->willReturn(['zf-versioning' => ['foo' => 'bar']]);
+        $this->container->get('config')->willReturn(['api-tools-versioning' => ['foo' => 'bar']]);
         $factory = new ContentTypeListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(ContentTypeListener::class, $listener);
@@ -55,7 +57,7 @@ class ContentTypeListenerFactoryTest extends TestCase
     public function testConfiguresContentTypeListeneWithRegexesFromConfiguration()
     {
         $this->container->has('config')->willReturn(true);
-        $this->container->get('config')->willReturn(['zf-versioning' => [
+        $this->container->get('config')->willReturn(['api-tools-versioning' => [
             'content-type' => [
                 '#foo=bar#',
             ],
