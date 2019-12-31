@@ -1,13 +1,15 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Versioning;
+namespace Laminas\ApiTools\Versioning;
 
 /**
- * Zend Framework module
+ * Laminas module
  */
 class Module
 {
@@ -31,7 +33,7 @@ class Module
      *
      * Attaches a PrototypeRouteListener to the module manager event manager.
      *
-     * @param \Zend\ModuleManager\ModuleManager $moduleManager
+     * @param \Laminas\ModuleManager\ModuleManager $moduleManager
      * @return void
      */
     public function init($moduleManager)
@@ -40,12 +42,12 @@ class Module
     }
 
     /**
-     * Listen to zend-mvc bootstrap event.
+     * Listen to laminas-mvc bootstrap event.
      *
      * Attaches each of the Accept, ContentType, and Version listeners to the
      * application event manager.
      *
-     * @param \Zend\Mvc\MvcEvent $e
+     * @param \Laminas\Mvc\MvcEvent $e
      * @return void
      */
     public function onBootstrap($e)
@@ -53,9 +55,9 @@ class Module
         $app      = $e->getTarget();
         $events   = $app->getEventManager();
         $services = $app->getServiceManager();
-        $services->get('ZF\Versioning\AcceptListener')->attach($events);
-        $services->get('ZF\Versioning\ContentTypeListener')->attach($events);
-        $services->get('ZF\Versioning\VersionListener')->attach($events);
+        $services->get('Laminas\ApiTools\Versioning\AcceptListener')->attach($events);
+        $services->get('Laminas\ApiTools\Versioning\ContentTypeListener')->attach($events);
+        $services->get('Laminas\ApiTools\Versioning\VersionListener')->attach($events);
     }
 
     /**

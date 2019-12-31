@@ -1,17 +1,19 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Versioning;
+namespace Laminas\ApiTools\Versioning;
 
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
-use Zend\EventManager\ListenerAggregateTrait;
-use Zend\ModuleManager\Listener\ConfigListener;
-use Zend\ModuleManager\ModuleEvent;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\ListenerAggregateInterface;
+use Laminas\EventManager\ListenerAggregateTrait;
+use Laminas\ModuleManager\Listener\ConfigListener;
+use Laminas\ModuleManager\ModuleEvent;
+use Laminas\Stdlib\ArrayUtils;
 
 class PrototypeRouteListener implements ListenerAggregateInterface
 {
@@ -52,9 +54,9 @@ class PrototypeRouteListener implements ListenerAggregateInterface
     /**
      * Listen to ModuleEvent::EVENT_MERGE_CONFIG
      *
-     * Looks for zf-versioning.url and router configuration; if both present,
+     * Looks for api-tools-versioning.url and router configuration; if both present,
      * injects the route prototype and adds a chain route to each route listed
-     * in the zf-versioning.url array.
+     * in the api-tools-versioning.url array.
      *
      * @param  ModuleEvent $e
      */
@@ -68,28 +70,28 @@ class PrototypeRouteListener implements ListenerAggregateInterface
         $config = $configListener->getMergedConfig(false);
 
         // Check for config keys
-        if (! isset($config['zf-versioning'])
+        if (! isset($config['api-tools-versioning'])
             || ! isset($config['router'])
         ) {
             return;
         }
 
         // Do we need to inject a prototype?
-        if (! isset($config['zf-versioning']['uri'])
-            || ! is_array($config['zf-versioning']['uri'])
-            || empty($config['zf-versioning']['uri'])
+        if (! isset($config['api-tools-versioning']['uri'])
+            || ! is_array($config['api-tools-versioning']['uri'])
+            || empty($config['api-tools-versioning']['uri'])
         ) {
             return;
         }
 
         // Override default version of 1 with user-specified config value, if available.
-        if (isset($config['zf-versioning']['default_version'])) {
-            $this->versionRouteOptions['defaults']['version'] = $config['zf-versioning']['default_version'];
+        if (isset($config['api-tools-versioning']['default_version'])) {
+            $this->versionRouteOptions['defaults']['version'] = $config['api-tools-versioning']['default_version'];
         }
 
         // Pre-process route list to strip out duplicates (often a result of
         // specifying nested routes)
-        $routes   = $config['zf-versioning']['uri'];
+        $routes   = $config['api-tools-versioning']['uri'];
         $filtered = [];
         foreach ($routes as $index => $route) {
             if (strstr($route, '/')) {
