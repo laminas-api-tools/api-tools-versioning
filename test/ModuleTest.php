@@ -1,19 +1,21 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Versioning;
+namespace LaminasTest\ApiTools\Versioning;
 
+use Laminas\ApiTools\Versioning\ContentTypeListener;
+use Laminas\ApiTools\Versioning\Module;
+use Laminas\EventManager\EventManager;
+use Laminas\ModuleManager\ModuleEvent;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\Mvc\MvcEvent;
+use Laminas\ServiceManager\ServiceManager;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\EventManager\EventManager;
-use Zend\ModuleManager\ModuleEvent;
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
-use Zend\ServiceManager\ServiceManager;
-use ZF\Versioning\ContentTypeListener;
-use ZF\Versioning\Module;
 
 class ModuleTest extends TestCase
 {
@@ -32,9 +34,9 @@ class ModuleTest extends TestCase
     {
         $config = $this->module->getServiceConfig();
         $this->assertArrayHasKey('factories', $config);
-        $this->assertArrayHasKey('ZF\Versioning\ContentTypeListener', $config['factories']);
-        $this->assertInstanceOf('Closure', $config['factories']['ZF\Versioning\ContentTypeListener']);
-        return $config['factories']['ZF\Versioning\ContentTypeListener'];
+        $this->assertArrayHasKey('Laminas\ApiTools\Versioning\ContentTypeListener', $config['factories']);
+        $this->assertInstanceOf('Closure', $config['factories']['Laminas\ApiTools\Versioning\ContentTypeListener']);
+        return $config['factories']['Laminas\ApiTools\Versioning\ContentTypeListener'];
     }
 
     /**
@@ -44,8 +46,8 @@ class ModuleTest extends TestCase
     {
         $config = $this->module->getServiceConfig();
         $this->assertArrayHasKey('factories', $config);
-        $this->assertArrayHasKey('ZF\Versioning\AcceptListener', $config['factories']);
-        $this->assertInstanceOf('Closure', $config['factories']['ZF\Versioning\AcceptListener']);
+        $this->assertArrayHasKey('Laminas\ApiTools\Versioning\AcceptListener', $config['factories']);
+        $this->assertInstanceOf('Closure', $config['factories']['Laminas\ApiTools\Versioning\AcceptListener']);
     }
 
     /**
@@ -54,7 +56,7 @@ class ModuleTest extends TestCase
     public function testServiceFactoryDefinedInModuleReturnsListener($factory)
     {
         $listener = $factory($this->services);
-        $this->assertInstanceOf('ZF\Versioning\ContentTypeListener', $listener);
+        $this->assertInstanceOf('Laminas\ApiTools\Versioning\ContentTypeListener', $listener);
     }
 
     /**
@@ -63,7 +65,7 @@ class ModuleTest extends TestCase
     public function testServiceFactoryDefinedInModuleUsesConfigServiceWhenDefiningListener($factory)
     {
         $config = array(
-            'zf-versioning' => array(
+            'api-tools-versioning' => array(
                 'content-type' => array(
                     '#^application/vendor\.(?P<vendor>mwop)\.(?P<resource>user|status)$#',
                 ),
@@ -72,8 +74,8 @@ class ModuleTest extends TestCase
         $this->services->setService('config', $config);
 
         $listener = $factory($this->services);
-        $this->assertInstanceOf('ZF\Versioning\ContentTypeListener', $listener);
-        $this->assertAttributeContains($config['zf-versioning']['content-type'][0], 'regexes', $listener);
+        $this->assertInstanceOf('Laminas\ApiTools\Versioning\ContentTypeListener', $listener);
+        $this->assertAttributeContains($config['api-tools-versioning']['content-type'][0], 'regexes', $listener);
     }
 
     /**
@@ -82,9 +84,9 @@ class ModuleTest extends TestCase
     public function testOnBootstrapMethodRegistersListenersWithEventManager($factory)
     {
         $serviceConfig = $this->module->getServiceConfig();
-        $this->services->setFactory('ZF\Versioning\ContentTypeListener', $serviceConfig['factories']['ZF\Versioning\ContentTypeListener']);
-        $this->services->setFactory('ZF\Versioning\AcceptListener', $serviceConfig['factories']['ZF\Versioning\AcceptListener']);
-        $this->services->setInvokableClass('ZF\Versioning\VersionListener', 'ZF\Versioning\VersionListener');
+        $this->services->setFactory('Laminas\ApiTools\Versioning\ContentTypeListener', $serviceConfig['factories']['Laminas\ApiTools\Versioning\ContentTypeListener']);
+        $this->services->setFactory('Laminas\ApiTools\Versioning\AcceptListener', $serviceConfig['factories']['Laminas\ApiTools\Versioning\AcceptListener']);
+        $this->services->setInvokableClass('Laminas\ApiTools\Versioning\VersionListener', 'Laminas\ApiTools\Versioning\VersionListener');
 
         $event = new MvcEvent();
         $event->setTarget($this->app);
@@ -102,9 +104,9 @@ class ModuleTest extends TestCase
         }
 
         $expected = array(
-            'ZF\Versioning\ContentTypeListener',
-            'ZF\Versioning\AcceptListener',
-            'ZF\Versioning\VersionListener',
+            'Laminas\ApiTools\Versioning\ContentTypeListener',
+            'Laminas\ApiTools\Versioning\AcceptListener',
+            'Laminas\ApiTools\Versioning\VersionListener',
         );
         foreach ($expected as $class) {
             $listener = $this->services->get($class);
@@ -123,6 +125,6 @@ class ModuleTest extends TestCase
         $this->assertTrue($listeners->hasPriority(1));
         $callback = $listeners->getIterator()->current()->getCallback();
         $test     = array_shift($callback);
-        $this->assertInstanceOf('ZF\Versioning\PrototypeRouteListener', $test);
+        $this->assertInstanceOf('Laminas\ApiTools\Versioning\PrototypeRouteListener', $test);
     }
 }
