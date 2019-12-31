@@ -1,13 +1,15 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Versioning\Factory;
+namespace Laminas\ApiTools\Versioning\Factory;
 
 use Interop\Container\ContainerInterface;
-use ZF\Versioning\AcceptListener;
+use Laminas\ApiTools\Versioning\AcceptListener;
 
 class AcceptListenerFactory
 {
@@ -18,8 +20,8 @@ class AcceptListenerFactory
     public function __invoke(ContainerInterface $container)
     {
         $config = $container->has('config') ? $container->get('config') : [];
-        $config = isset($config['zf-versioning']['content-type'])
-            ? $config['zf-versioning']['content-type']
+        $config = isset($config['api-tools-versioning']['content-type'])
+            ? $config['api-tools-versioning']['content-type']
             : [];
 
         $listener = new AcceptListener();

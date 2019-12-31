@@ -1,15 +1,17 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Versioning;
+namespace LaminasTest\ApiTools\Versioning;
 
+use Laminas\ApiTools\Versioning\PrototypeRouteListener;
+use Laminas\ModuleManager\Listener\ConfigListener;
+use Laminas\ModuleManager\ModuleEvent;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\ModuleManager\Listener\ConfigListener;
-use Zend\ModuleManager\ModuleEvent;
-use ZF\Versioning\PrototypeRouteListener;
 
 class PrototypeRouteListenerTest extends TestCase
 {
@@ -101,12 +103,12 @@ class PrototypeRouteListenerTest extends TestCase
      */
     public function testPrototypeAddedToRoutesProvidedToListener(array $routes, $apiVersion = null, $position = 0)
     {
-        $this->config['zf-versioning'] = [
+        $this->config['api-tools-versioning'] = [
             'uri' => $routes
         ];
 
         if (!empty($apiVersion)) {
-            $this->config['zf-versioning']['default_version'] = $apiVersion;
+            $this->config['api-tools-versioning']['default_version'] = $apiVersion;
         } else {
             $apiVersion = 1;
         }
@@ -154,7 +156,7 @@ class PrototypeRouteListenerTest extends TestCase
     public function testPrototypeAddedToRoutesWithDefaultVersion($apiVersion = null)
     {
         $routes = array_keys($this->config['router']['routes']);
-        $this->config['zf-versioning'] = [
+        $this->config['api-tools-versioning'] = [
             'default_version' => $apiVersion,
             'uri' => $routes
         ];
@@ -202,7 +204,7 @@ class PrototypeRouteListenerTest extends TestCase
     public function testPrototypeAddedToRoutesWithSpecificDefaultVersion(array $defaultVersions)
     {
         $routes = array_keys($this->config['router']['routes']);
-        $this->config['zf-versioning'] = [
+        $this->config['api-tools-versioning'] = [
             'default_version' => $defaultVersions,
             'uri' => $routes
         ];

@@ -1,17 +1,19 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Versioning;
+namespace LaminasTest\ApiTools\Versioning;
 
+use Laminas\ApiTools\Versioning\VersionListener;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\Test\EventListenerIntrospectionTrait;
+use Laminas\Http\Request;
+use Laminas\Mvc\MvcEvent;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\EventManager\EventManager;
-use Zend\EventManager\Test\EventListenerIntrospectionTrait;
-use Zend\Http\Request;
-use Zend\Mvc\MvcEvent;
-use ZF\Versioning\VersionListener;
 
 class VersionListenerTest extends TestCase
 {
@@ -45,7 +47,7 @@ class VersionListenerTest extends TestCase
         $this->assertNull($this->listener->onRoute($event));
     }
 
-    public function testDoesNothingIfNoVersionAndNoZfVerVersionParameterInRouteMatch()
+    public function testDoesNothingIfNoVersionAndNoLaminasVerVersionParameterInRouteMatch()
     {
         $this->assertNull($this->listener->onRoute($this->event));
     }

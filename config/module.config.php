@@ -1,21 +1,23 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Versioning;
+namespace Laminas\ApiTools\Versioning;
 
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
-    'zf-versioning' => [
+    'api-tools-versioning' => [
         'content-type' => [
             // @codingStandardsIgnoreStart
             // Array of regular expressions to apply against the content-type
             // header. All capturing expressions should be named:
             // (?P<name_to_capture>expression)
-            // Default: '#^application/vnd\.(?P<zf_ver_vendor>[^.]+)\.v(?P<zf_ver_version>\d+)\.(?P<zf_ver_resource>[a-zA-Z0-9_-]+)$#'
+            // Default: '#^application/vnd\.(?P<laminas_ver_vendor>[^.]+)\.v(?P<laminas_ver_version>\d+)\.(?P<laminas_ver_resource>[a-zA-Z0-9_-]+)$#'
             //
             // Example:
             // '#^application/vendor\.(?P<vendor>mwop)\.v(?P<version>\d+)\.(?P<resource>status|user)$#',
@@ -24,7 +26,7 @@ return [
         // Default version number to use if none is provided by the API consumer. Default: 1
         'default_version' => 1,
         'uri' => [
-            // Array of routes that should prepend the "zf-versioning" route
+            // Array of routes that should prepend the "api-tools-versioning" route
             // (i.e., "/v:version"). Any route in this array will be chained to
             // that route, but can still be referenced by their route name.
             //
@@ -38,6 +40,12 @@ return [
         ],
     ],
     'service_manager' => [
+        // Legacy Zend Framework aliases
+        'aliases' => [
+            \ZF\Versioning\AcceptListener::class => AcceptListener::class,
+            \ZF\Versioning\ContentTypeListener::class => ContentTypeListener::class,
+            \ZF\Versioning\VersionListener::class => VersionListener::class,
+        ],
         'factories' => [
             AcceptListener::class => Factory\AcceptListenerFactory::class,
             ContentTypeListener::class => Factory\ContentTypeListenerFactory::class,
