@@ -1,13 +1,15 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Versioning;
+namespace Laminas\ApiTools\Versioning;
 
 /**
- * ZF2 module
+ * Laminas module
  */
 class Module
 {
@@ -18,8 +20,8 @@ class Module
      */
     public function getAutoloaderConfig()
     {
-        return array('Zend\Loader\StandardAutoloader' => array('namespaces' => array(
-            __NAMESPACE__ => __DIR__ . '/src/ZF/Versioning/',
+        return array('Laminas\Loader\StandardAutoloader' => array('namespaces' => array(
+            __NAMESPACE__ => __DIR__ . '/src/Laminas/Versioning/',
         )));
     }
 
@@ -36,15 +38,15 @@ class Module
     public function getServiceConfig()
     {
         return array('factories' => array(
-            'ZF\Versioning\AcceptListener' => function ($services) {
+            'Laminas\ApiTools\Versioning\AcceptListener' => function ($services) {
                 $config = array();
                 if ($services->has('Config')) {
                     $allConfig = $services->get('Config');
-                    if (isset($allConfig['zf-versioning'])
-                        && isset($allConfig['zf-versioning']['content-type'])
-                        && is_array($allConfig['zf-versioning']['content-type'])
+                    if (isset($allConfig['api-tools-versioning'])
+                        && isset($allConfig['api-tools-versioning']['content-type'])
+                        && is_array($allConfig['api-tools-versioning']['content-type'])
                     ) {
-                        $config = $allConfig['zf-versioning']['content-type'];
+                        $config = $allConfig['api-tools-versioning']['content-type'];
                     }
                 }
 
@@ -54,15 +56,15 @@ class Module
                 }
                 return $listener;
             },
-            'ZF\Versioning\ContentTypeListener' => function ($services) {
+            'Laminas\ApiTools\Versioning\ContentTypeListener' => function ($services) {
                 $config = array();
                 if ($services->has('Config')) {
                     $allConfig = $services->get('Config');
-                    if (isset($allConfig['zf-versioning'])
-                        && isset($allConfig['zf-versioning']['content-type'])
-                        && is_array($allConfig['zf-versioning']['content-type'])
+                    if (isset($allConfig['api-tools-versioning'])
+                        && isset($allConfig['api-tools-versioning']['content-type'])
+                        && is_array($allConfig['api-tools-versioning']['content-type'])
                     ) {
-                        $config = $allConfig['zf-versioning']['content-type'];
+                        $config = $allConfig['api-tools-versioning']['content-type'];
                     }
                 }
 
@@ -87,8 +89,8 @@ class Module
         $app      = $e->getTarget();
         $events   = $app->getEventManager();
         $services = $app->getServiceManager();
-        $events->attach($services->get('ZF\Versioning\AcceptListener'));
-        $events->attach($services->get('ZF\Versioning\ContentTypeListener'));
-        $events->attach($services->get('ZF\Versioning\VersionListener'));
+        $events->attach($services->get('Laminas\ApiTools\Versioning\AcceptListener'));
+        $events->attach($services->get('Laminas\ApiTools\Versioning\ContentTypeListener'));
+        $events->attach($services->get('Laminas\ApiTools\Versioning\VersionListener'));
     }
 }

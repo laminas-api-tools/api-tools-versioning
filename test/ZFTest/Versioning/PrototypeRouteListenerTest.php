@@ -1,16 +1,18 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Versioning;
+namespace LaminasTest\ApiTools\Versioning;
 
+use Laminas\ApiTools\Versioning\PrototypeRouteListener;
+use Laminas\ModuleManager\Listener\ConfigListener;
+use Laminas\ModuleManager\ModuleEvent;
 use PHPUnit_Framework_TestCase as TestCase;
 use ReflectionObject;
-use Zend\ModuleManager\Listener\ConfigListener;
-use Zend\ModuleManager\ModuleEvent;
-use ZF\Versioning\PrototypeRouteListener;
 
 class PrototypeRouteListenerTest extends TestCase
 {
@@ -90,12 +92,12 @@ class PrototypeRouteListenerTest extends TestCase
      */
     public function testPrototypeAddedToRoutesProvidedToListener(array $routes, $apiVersion = null)
     {
-        $this->config['zf-versioning'] = array(
+        $this->config['api-tools-versioning'] = array(
             'uri' => $routes
         );
 
         if (!empty($apiVersion)) {
-            $this->config['zf-versioning']['default_version'] = $apiVersion;
+            $this->config['api-tools-versioning']['default_version'] = $apiVersion;
         } else {
             $apiVersion = 1;
         }
