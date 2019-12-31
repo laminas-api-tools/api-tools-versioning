@@ -1,43 +1,21 @@
 {
-    "name": "zfcampus/zf-versioning",
-    "description": "ZF2 Module providing listeners and route prototypes for implementing API versioning",
+    "name": "laminas-api-tools/api-tools-versioning",
+    "description": "Laminas Module providing listeners and route prototypes for implementing API versioning",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zendframework",
-        "zf",
-        "zend",
+        "laminas",
+        "api-tools",
         "module",
         "rest"
     ],
+    "homepage": "https://api-tools.getlaminas.org",
     "support": {
-        "issues": "https://github.com/zfcampus/zf-versioning/issues",
-        "source": "https://github.com/zfcampus/zf-versioning",
-        "rss": "https://github.com/zfcampus/zf-versioning/releases.atom",
-        "chat": "https://zendframework-slack.herokuapp.com",
-        "forum": "https://discourse.zendframework.com/c/questions/apigility"
-    },
-    "require": {
-        "php": "^5.6 || ^7.0",
-        "zendframework/zend-eventmanager": "^2.6.3 || ^3.0.1",
-        "zendframework/zend-http": "^2.5.4",
-        "zendframework/zend-modulemanager": "^2.7.2",
-        "zendframework/zend-mvc": "^2.7.15 || ^3.0.2",
-        "zendframework/zend-servicemanager": "^2.7.6 || ^3.1",
-        "zendframework/zend-stdlib": "^2.7.7 || ^3.0.1"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.5",
-        "zendframework/zend-coding-standard": "~1.0.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "ZF\\Versioning\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ZFTest\\Versioning\\": "test/"
-        }
+        "docs": "https://api-tools.getlaminas.org/documentation",
+        "issues": "https://github.com/laminas-api-tools/api-tools-versioning/issues",
+        "source": "https://github.com/laminas-api-tools/api-tools-versioning",
+        "rss": "https://github.com/laminas-api-tools/api-tools-versioning/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
     "config": {
         "sort-packages": true
@@ -47,8 +25,32 @@
             "dev-master": "1.3.x-dev",
             "dev-develop": "1.4.x-dev"
         },
-        "zf": {
-            "module": "ZF\\Versioning"
+        "laminas": {
+            "module": "Laminas\\ApiTools\\Versioning"
+        }
+    },
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "laminas/laminas-eventmanager": "^2.6.3 || ^3.0.1",
+        "laminas/laminas-http": "^2.5.4",
+        "laminas/laminas-modulemanager": "^2.7.2",
+        "laminas/laminas-mvc": "^2.7.15 || ^3.0.2",
+        "laminas/laminas-servicemanager": "^2.7.6 || ^3.1",
+        "laminas/laminas-stdlib": "^2.7.7 || ^3.0.1",
+        "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~1.0.0",
+        "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\ApiTools\\Versioning\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaminasTest\\ApiTools\\Versioning\\": "test/"
         }
     },
     "scripts": {
@@ -61,5 +63,7 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "homepage": "http://apigility.org/"
+    "replace": {
+        "zfcampus/zf-versioning": "self.version"
+    }
 }

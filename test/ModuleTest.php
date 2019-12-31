@@ -1,24 +1,26 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Versioning;
+namespace LaminasTest\ApiTools\Versioning;
 
+use Laminas\ApiTools\Versioning\AcceptListener;
+use Laminas\ApiTools\Versioning\ContentTypeListener;
+use Laminas\ApiTools\Versioning\Module;
+use Laminas\ApiTools\Versioning\PrototypeRouteListener;
+use Laminas\ApiTools\Versioning\VersionListener;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\Test\EventListenerIntrospectionTrait;
+use Laminas\ModuleManager\ModuleEvent;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\Mvc\MvcEvent;
+use Laminas\ServiceManager\Config;
+use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
-use Zend\EventManager\EventManager;
-use Zend\EventManager\Test\EventListenerIntrospectionTrait;
-use Zend\ModuleManager\ModuleEvent;
-use Zend\ModuleManager\ModuleManager;
-use Zend\Mvc\MvcEvent;
-use Zend\ServiceManager\Config;
-use Zend\ServiceManager\ServiceManager;
-use ZF\Versioning\AcceptListener;
-use ZF\Versioning\ContentTypeListener;
-use ZF\Versioning\Module;
-use ZF\Versioning\PrototypeRouteListener;
-use ZF\Versioning\VersionListener;
 
 class ModuleTest extends TestCase
 {
