@@ -1,16 +1,18 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2013 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Versioning;
+namespace Laminas\ApiTools\Versioning;
 
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Http\Request as HttpRequest;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch;
+use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\RouteMatch;
 
 class VersionListener extends AbstractListenerAggregate
 {
@@ -71,7 +73,7 @@ class VersionListener extends AbstractListenerAggregate
      * Retrieve the version from the route match.
      *
      * The route prototype sets "version", while the Content-Type listener sets
-     * "zf_ver_version"; check both to obtain the version, giving priority to the
+     * "laminas_ver_version"; check both to obtain the version, giving priority to the
      * route prototype result.
      * 
      * @param  RouteMatch $routeMatches 
@@ -79,7 +81,7 @@ class VersionListener extends AbstractListenerAggregate
      */
     protected function getVersionFromRouteMatch(RouteMatch $routeMatches)
     {
-        $version = $routeMatches->getParam('zf_ver_version', false);
+        $version = $routeMatches->getParam('laminas_ver_version', false);
         if ($version) {
             return $version;
         }
