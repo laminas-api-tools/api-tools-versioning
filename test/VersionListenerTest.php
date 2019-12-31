@@ -1,16 +1,18 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Versioning;
+namespace LaminasTest\ApiTools\Versioning;
 
+use Laminas\ApiTools\Versioning\VersionListener;
+use Laminas\EventManager\EventManager;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\RouteMatch;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\EventManager\EventManager;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch;
-use ZF\Versioning\VersionListener;
 
 class VersionListenerTest extends TestCase
 {
@@ -40,7 +42,7 @@ class VersionListenerTest extends TestCase
         $this->assertNull($this->listener->onRoute($event));
     }
 
-    public function testDoesNothingIfNoVersionAndNoZfVerVersionParameterInRouteMatch()
+    public function testDoesNothingIfNoVersionAndNoLaminasVerVersionParameterInRouteMatch()
     {
         $this->assertNull($this->listener->onRoute($this->event));
     }
@@ -74,7 +76,7 @@ class VersionListenerTest extends TestCase
         $matches->setParam('version', 2);
         $matches->setParam('controller', 'Foo\V1\Rest\Bar\Controller');
         $result = $this->listener->onRoute($this->event);
-        $this->assertInstanceOf('Zend\Mvc\Router\RouteMatch', $result);
+        $this->assertInstanceOf('Laminas\Mvc\Router\RouteMatch', $result);
         $this->assertEquals('Foo\V2\Rest\Bar\Controller', $result->getParam('controller'));
     }
 }
