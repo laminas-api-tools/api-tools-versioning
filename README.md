@@ -1,7 +1,7 @@
 Laminas Versioning
 =============
 
-[![Build Status](https://travis-ci.org/laminas-api-tools/api-tools-versioning.svg?branch=master)](https://travis-ci.org/laminas-api-tools/api-tools-versioning)
+[![Build Status](https://travis-ci.com/laminas-api-tools/api-tools-versioning.svg?branch=master)](https://travis-ci.com/laminas-api-tools/api-tools-versioning)
 [![Coverage Status](https://coveralls.io/repos/github/laminas-api-tools/api-tools-versioning/badge.svg?branch=master)](https://coveralls.io/github/laminas-api-tools/api-tools-versioning?branch=master)
 
 Introduction
