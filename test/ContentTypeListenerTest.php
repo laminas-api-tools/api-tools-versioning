@@ -61,6 +61,7 @@ class ContentTypeListenerTest extends TestCase
         $this->assertNull($this->listener->onRoute($this->event));
     }
 
+    /** @return array */
     public function validDefaultContentTypes()
     {
         return [
@@ -81,6 +82,10 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider validDefaultContentTypes
+     * @param string $header
+     * @param string $vendor
+     * @param int $version
+     * @param string $resource
      */
     public function testInjectsRouteMatchesWhenContentTypeMatchesDefaultRegexp($header, $vendor, $version, $resource)
     {
@@ -95,6 +100,7 @@ class ContentTypeListenerTest extends TestCase
         $this->assertEquals($resource, $routeMatch->getParam('laminas_ver_resource', false));
     }
 
+    /** @return array */
     public function invalidDefaultContentTypes()
     {
         return [
@@ -107,6 +113,7 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider invalidDefaultContentTypes
+     * @param string $header
      */
     public function testInjectsNothingIntoRouteMatchesWhenContentTypeDoesNotMatchDefaultRegexp($header)
     {
@@ -121,6 +128,7 @@ class ContentTypeListenerTest extends TestCase
         $this->assertFalse($routeMatch->getParam('laminas_ver_resource', false));
     }
 
+    /** @return array */
     public function validCustomContentTypes()
     {
         return [
@@ -141,6 +149,10 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider validCustomContentTypes
+     * @param string $header
+     * @param string $vendor
+     * @param int $version
+     * @param string $resource
      */
     public function testWillInjectRouteMatchesWhenContentTypeMatchesCustomRegexp($header, $vendor, $version, $resource)
     {
@@ -159,6 +171,7 @@ class ContentTypeListenerTest extends TestCase
         $this->assertEquals($resource, $routeMatch->getParam('resource', false));
     }
 
+    /** @return array */
     public function mixedContentTypes()
     {
         return [
@@ -183,6 +196,8 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider mixedContentTypes
+     * @param string $header
+     * @param array $matches
      */
     public function testWillInjectRouteMatchesForFirstRegexpToMatch($header, array $matches)
     {

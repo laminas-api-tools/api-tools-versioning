@@ -13,7 +13,10 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class Application
 {
+    /** @var EventManagerInterface|null */
     protected $events;
+
+    /** @var ServiceLocatorInterface|null */
     protected $services;
 
     public function setServiceManager(ServiceLocatorInterface $services)
@@ -26,11 +29,13 @@ class Application
         $this->events = $events;
     }
 
+    /** @return ServiceLocatorInterface|null */
     public function getServiceManager()
     {
         return $this->services;
     }
 
+    /** @return EventManagerInterface|null */
     public function getEventManager()
     {
         return $this->events;
