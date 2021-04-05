@@ -23,15 +23,15 @@ class ContentTypeListenerFactoryTest extends TestCase
     {
         $this->container = $this->prophesize(ContainerInterface::class);
 
-        $r = new ReflectionClass(ContentTypeListener::class);
-        $props = $r->getDefaultProperties();
+        $r                    = new ReflectionClass(ContentTypeListener::class);
+        $props                = $r->getDefaultProperties();
         $this->defaultRegexes = $props['regexes'];
     }
 
     public function testCreatesEmptyContentTypeListenerIfNoConfigServicePresent()
     {
         $this->container->has('config')->willReturn(false);
-        $factory = new ContentTypeListenerFactory();
+        $factory  = new ContentTypeListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(ContentTypeListener::class, $listener);
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
@@ -41,7 +41,7 @@ class ContentTypeListenerFactoryTest extends TestCase
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn(['foo' => 'bar']);
-        $factory = new ContentTypeListenerFactory();
+        $factory  = new ContentTypeListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(ContentTypeListener::class, $listener);
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
@@ -51,7 +51,7 @@ class ContentTypeListenerFactoryTest extends TestCase
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn(['api-tools-versioning' => ['foo' => 'bar']]);
-        $factory = new ContentTypeListenerFactory();
+        $factory  = new ContentTypeListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(ContentTypeListener::class, $listener);
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
@@ -60,12 +60,14 @@ class ContentTypeListenerFactoryTest extends TestCase
     public function testConfiguresContentTypeListeneWithRegexesFromConfiguration()
     {
         $this->container->has('config')->willReturn(true);
-        $this->container->get('config')->willReturn(['api-tools-versioning' => [
-            'content-type' => [
-                '#foo=bar#',
+        $this->container->get('config')->willReturn([
+            'api-tools-versioning' => [
+                'content-type' => [
+                    '#foo=bar#',
+                ],
             ],
-        ]]);
-        $factory = new ContentTypeListenerFactory();
+        ]);
+        $factory  = new ContentTypeListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(ContentTypeListener::class, $listener);
         $actualRegexes = self::getActualRegexes($listener);
@@ -78,7 +80,7 @@ class ContentTypeListenerFactoryTest extends TestCase
 
     private static function getActualRegexes(ContentTypeListener $listener): array
     {
-        $reflectionClass = new ReflectionClass(ContentTypeListener::class);
+        $reflectionClass    = new ReflectionClass(ContentTypeListener::class);
         $reflectionProperty = $reflectionClass->getProperty('regexes');
         $reflectionProperty->setAccessible(true);
 

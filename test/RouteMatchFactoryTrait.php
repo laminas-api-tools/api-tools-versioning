@@ -11,6 +11,8 @@ namespace LaminasTest\ApiTools\Versioning;
 use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
 
+use function class_exists;
+
 trait RouteMatchFactoryTrait
 {
     /**

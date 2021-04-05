@@ -13,35 +13,39 @@ use Laminas\ModuleManager\Listener\ConfigListener;
 use Laminas\ModuleManager\ModuleEvent;
 use PHPUnit\Framework\TestCase;
 
+use function array_keys;
+use function strpos;
+use function var_export;
+
 class PrototypeRouteListenerTest extends TestCase
 {
     public function setUp(): void
     {
-        $this->config = [
+        $this->config         = [
             'router' => [
                 'routes' => [
                     'status' => [
-                        'type' => 'Segment',
+                        'type'    => 'Segment',
                         'options' => [
-                            'route' => '/status[/:id]',
+                            'route'    => '/status[/:id]',
                             'defaults' => [
                                 'controller' => 'StatusController',
                             ],
                         ],
                     ],
-                    'user' => [
-                        'type' => 'Segment',
+                    'user'   => [
+                        'type'    => 'Segment',
                         'options' => [
-                            'route' => '/user[/:id]',
+                            'route'    => '/user[/:id]',
                             'defaults' => [
                                 'controller' => 'UserController',
                             ],
                         ],
                     ],
-                    'group' => [
-                        'type' => 'Segment',
+                    'group'  => [
+                        'type'    => 'Segment',
                         'options' => [
-                            'route' => '/group[/v:version][/:id]',
+                            'route'    => '/group[/v:version][/:id]',
                             'defaults' => [
                                 'controller' => 'GroupController',
                             ],
@@ -91,9 +95,9 @@ class PrototypeRouteListenerTest extends TestCase
     {
         return [
             'status' => [['status'], 1],
-            'user' => [['user'], 2],
-            'both' => [['status', 'user'], null],
-            'group' => [['group'], null, 6],
+            'user'   => [['user'], 2],
+            'both'   => [['status', 'user'], null],
+            'group'  => [['group'], null, 6],
         ];
     }
 
@@ -103,7 +107,7 @@ class PrototypeRouteListenerTest extends TestCase
     public function testPrototypeAddedToRoutesProvidedToListener(array $routes, $apiVersion = null, $position = 0)
     {
         $this->config['api-tools-versioning'] = [
-            'uri' => $routes
+            'uri' => $routes,
         ];
 
         if (! empty($apiVersion)) {
@@ -143,8 +147,8 @@ class PrototypeRouteListenerTest extends TestCase
     public function defaultVersionValues()
     {
         return [
-            'v1' => [1],
-            'v2' => [2],
+            'v1'    => [1],
+            'v2'    => [2],
             'empty' => [null],
         ];
     }
@@ -154,10 +158,10 @@ class PrototypeRouteListenerTest extends TestCase
      */
     public function testPrototypeAddedToRoutesWithDefaultVersion($apiVersion = null)
     {
-        $routes = array_keys($this->config['router']['routes']);
+        $routes                               = array_keys($this->config['router']['routes']);
         $this->config['api-tools-versioning'] = [
             'default_version' => $apiVersion,
-            'uri' => $routes
+            'uri'             => $routes,
         ];
 
         $this->configListener->setMergedConfig($this->config);
@@ -183,7 +187,7 @@ class PrototypeRouteListenerTest extends TestCase
             $this->assertArrayHasKey('defaults', $options);
             $this->assertArrayHasKey('version', $options['defaults']);
 
-            $apiVersion = isset($apiVersion) ? $apiVersion : 1;
+            $apiVersion = $apiVersion ?? 1;
             $this->assertEquals($apiVersion, $options['defaults']['version']);
         }
     }
@@ -191,8 +195,8 @@ class PrototypeRouteListenerTest extends TestCase
     public function specificDefaultVersionForWhichToVerifyPrototype()
     {
         return [
-            'status' => [['status' => 2]],
-            'user' => [['user' => 4]],
+            'status'           => [['status' => 2]],
+            'user'             => [['user' => 4]],
             'all-except-group' => [['status' => 2, 'user' => 3]],
         ];
     }
@@ -202,10 +206,10 @@ class PrototypeRouteListenerTest extends TestCase
      */
     public function testPrototypeAddedToRoutesWithSpecificDefaultVersion(array $defaultVersions)
     {
-        $routes = array_keys($this->config['router']['routes']);
+        $routes                               = array_keys($this->config['router']['routes']);
         $this->config['api-tools-versioning'] = [
             'default_version' => $defaultVersions,
-            'uri' => $routes
+            'uri'             => $routes,
         ];
 
         $this->configListener->setMergedConfig($this->config);
@@ -230,7 +234,7 @@ class PrototypeRouteListenerTest extends TestCase
 
             $this->assertArrayHasKey('defaults', $options);
             $this->assertArrayHasKey('version', $options['defaults']);
-            $apiVersion = isset($defaultVersions[$routeName]) ? $defaultVersions[$routeName] : 1;
+            $apiVersion = $defaultVersions[$routeName] ?? 1;
             $this->assertEquals($apiVersion, $options['defaults']['version']);
         }
     }

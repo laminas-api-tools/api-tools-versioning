@@ -22,13 +22,15 @@ use Laminas\ServiceManager\Config;
 use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 
+use function sprintf;
+
 class ModuleTest extends TestCase
 {
     use EventListenerIntrospectionTrait;
 
     public function setUp(): void
     {
-        $this->app = new TestAsset\Application();
+        $this->app      = new TestAsset\Application();
         $this->services = new ServiceManager();
         $this->app->setServiceManager($this->services);
         $this->events = new EventManager();
@@ -49,8 +51,8 @@ class ModuleTest extends TestCase
 
         $listeners = [
             ContentTypeListener::class => -40,
-            AcceptListener::class => -40,
-            VersionListener::class => -41,
+            AcceptListener::class      => -40,
+            VersionListener::class     => -41,
         ];
 
         foreach ($listeners as $class => $priority) {

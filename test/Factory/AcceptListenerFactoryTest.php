@@ -23,15 +23,15 @@ class AcceptListenerFactoryTest extends TestCase
     {
         $this->container = $this->prophesize(ContainerInterface::class);
 
-        $r = new ReflectionClass(AcceptListener::class);
-        $props = $r->getDefaultProperties();
+        $r                    = new ReflectionClass(AcceptListener::class);
+        $props                = $r->getDefaultProperties();
         $this->defaultRegexes = $props['regexes'];
     }
 
     public function testCreatesEmptyAcceptListenerIfNoConfigServicePresent()
     {
         $this->container->has('config')->willReturn(false);
-        $factory = new AcceptListenerFactory();
+        $factory  = new AcceptListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(AcceptListener::class, $listener);
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
@@ -41,7 +41,7 @@ class AcceptListenerFactoryTest extends TestCase
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn(['foo' => 'bar']);
-        $factory = new AcceptListenerFactory();
+        $factory  = new AcceptListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(AcceptListener::class, $listener);
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
@@ -51,7 +51,7 @@ class AcceptListenerFactoryTest extends TestCase
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn(['api-tools-versioning' => ['foo' => 'bar']]);
-        $factory = new AcceptListenerFactory();
+        $factory  = new AcceptListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(AcceptListener::class, $listener);
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
@@ -60,12 +60,14 @@ class AcceptListenerFactoryTest extends TestCase
     public function testConfiguresAcceptListeneWithRegexesFromConfiguration()
     {
         $this->container->has('config')->willReturn(true);
-        $this->container->get('config')->willReturn(['api-tools-versioning' => [
-            'content-type' => [
-                '#foo=bar#',
+        $this->container->get('config')->willReturn([
+            'api-tools-versioning' => [
+                'content-type' => [
+                    '#foo=bar#',
+                ],
             ],
-        ]]);
-        $factory = new AcceptListenerFactory();
+        ]);
+        $factory  = new AcceptListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(AcceptListener::class, $listener);
         $actualRegexes = self::getActualRegexes($listener);
@@ -78,7 +80,7 @@ class AcceptListenerFactoryTest extends TestCase
 
     private static function getActualRegexes(AcceptListener $listener): array
     {
-        $reflectionClass = new ReflectionClass(AcceptListener::class);
+        $reflectionClass    = new ReflectionClass(AcceptListener::class);
         $reflectionProperty = $reflectionClass->getProperty('regexes');
         $reflectionProperty->setAccessible(true);
 

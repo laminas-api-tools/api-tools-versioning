@@ -19,8 +19,8 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class VersionListenerTest extends TestCase
 {
     use EventListenerIntrospectionTrait;
-    use RouteMatchFactoryTrait;
     use ProphecyTrait;
+    use RouteMatchFactoryTrait;
 
     public function setUp(): void
     {

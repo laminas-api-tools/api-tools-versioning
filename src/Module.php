@@ -8,14 +8,18 @@
 
 namespace Laminas\ApiTools\Versioning;
 
+use Laminas\ApiTools\Versioning\AcceptListener;
+use Laminas\ApiTools\Versioning\ContentTypeListener;
+use Laminas\ApiTools\Versioning\VersionListener;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\Mvc\MvcEvent;
+
 /**
  * Laminas module
  */
 class Module
 {
-    /**
-     * @var PrototypeRouteListener
-     */
+    /** @var PrototypeRouteListener */
     private $prototypeRouteListener;
 
     /**
@@ -33,7 +37,7 @@ class Module
      *
      * Attaches a PrototypeRouteListener to the module manager event manager.
      *
-     * @param \Laminas\ModuleManager\ModuleManager $moduleManager
+     * @param ModuleManager $moduleManager
      * @return void
      */
     public function init($moduleManager)
@@ -47,7 +51,7 @@ class Module
      * Attaches each of the Accept, ContentType, and Version listeners to the
      * application event manager.
      *
-     * @param \Laminas\Mvc\MvcEvent $e
+     * @param MvcEvent $e
      * @return void
      */
     public function onBootstrap($e)
@@ -55,9 +59,9 @@ class Module
         $app      = $e->getTarget();
         $events   = $app->getEventManager();
         $services = $app->getServiceManager();
-        $services->get('Laminas\ApiTools\Versioning\AcceptListener')->attach($events);
-        $services->get('Laminas\ApiTools\Versioning\ContentTypeListener')->attach($events);
-        $services->get('Laminas\ApiTools\Versioning\VersionListener')->attach($events);
+        $services->get(AcceptListener::class)->attach($events);
+        $services->get(ContentTypeListener::class)->attach($events);
+        $services->get(VersionListener::class)->attach($events);
     }
 
     /**

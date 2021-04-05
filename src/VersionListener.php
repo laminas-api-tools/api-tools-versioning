@@ -15,6 +15,10 @@ use Laminas\Mvc\MvcEvent;
 use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
 
+use function preg_match;
+use function preg_quote;
+use function preg_replace;
+
 class VersionListener implements ListenerAggregateInterface
 {
     use ListenerAggregateTrait;
@@ -29,8 +33,6 @@ class VersionListener implements ListenerAggregateInterface
 
     /**
      * Determine if versioning is in the route matches, and update the controller accordingly
-     *
-     * @param MvcEvent $e
      */
     public function onRoute(MvcEvent $e)
     {

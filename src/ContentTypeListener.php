@@ -16,12 +16,27 @@ use Laminas\Mvc\MvcEvent;
 use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
 
+use function array_reverse;
+use function array_shift;
+use function explode;
+use function get_class;
+use function gettype;
+use function is_array;
+use function is_int;
+use function is_numeric;
+use function is_object;
+use function is_string;
+use function preg_match;
+use function sprintf;
+use function trim;
+
 class ContentTypeListener implements ListenerAggregateInterface
 {
     use ListenerAggregateTrait;
 
     /**
      * Header to examine.
+     *
      * @var string
      */
     protected $headerName = 'content-type';
@@ -55,7 +70,7 @@ class ContentTypeListener implements ListenerAggregateInterface
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects a string regular expression as an argument; received %s',
                 __METHOD__,
-                (is_object($regex) ? get_class($regex) : gettype($regex))
+                is_object($regex) ? get_class($regex) : gettype($regex)
             ));
         }
         $this->regexes[] = $regex;
@@ -64,8 +79,6 @@ class ContentTypeListener implements ListenerAggregateInterface
 
     /**
      * Match against the Content-Type header and inject into the route matches
-     *
-     * @param MvcEvent $e
      */
     public function onRoute(MvcEvent $e)
     {
@@ -100,7 +113,7 @@ class ContentTypeListener implements ListenerAggregateInterface
      */
     protected function parseHeaderForMatches($value)
     {
-        $parts = explode(';', $value);
+        $parts       = explode(';', $value);
         $contentType = array_shift($parts);
         $contentType = trim($contentType);
 

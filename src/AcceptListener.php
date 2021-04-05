@@ -8,10 +8,16 @@
 
 namespace Laminas\ApiTools\Versioning;
 
+use function array_reverse;
+use function array_shift;
+use function explode;
+use function preg_match;
+
 class AcceptListener extends ContentTypeListener
 {
     /**
      * Header to examine.
+     *
      * @var string
      */
     protected $headerName = 'accept';

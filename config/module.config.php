@@ -25,7 +25,7 @@ return [
         ],
         // Default version number to use if none is provided by the API consumer. Default: 1
         'default_version' => 1,
-        'uri' => [
+        'uri'             => [
             // Array of routes that should prepend the "api-tools-versioning" route
             // (i.e., "/v:version"). Any route in this array will be chained to
             // that route, but can still be referenced by their route name.
@@ -39,17 +39,17 @@ return [
             // would chain the above named routes, and version them.
         ],
     ],
-    'service_manager' => [
+    'service_manager'      => [
         // Legacy Zend Framework aliases
-        'aliases' => [
-            \ZF\Versioning\AcceptListener::class => AcceptListener::class,
+        'aliases'   => [
+            \ZF\Versioning\AcceptListener::class      => AcceptListener::class,
             \ZF\Versioning\ContentTypeListener::class => ContentTypeListener::class,
-            \ZF\Versioning\VersionListener::class => VersionListener::class,
+            \ZF\Versioning\VersionListener::class     => VersionListener::class,
         ],
         'factories' => [
-            AcceptListener::class => Factory\AcceptListenerFactory::class,
+            AcceptListener::class      => Factory\AcceptListenerFactory::class,
             ContentTypeListener::class => Factory\ContentTypeListenerFactory::class,
-            VersionListener::class => InvokableFactory::class,
+            VersionListener::class     => InvokableFactory::class,
         ],
     ],
 ];

@@ -170,7 +170,7 @@ class ContentTypeListenerTest extends TestCase
                     'laminas_ver_resource' => 'status',
                 ],
             ],
-            'custom' => [
+            'custom'  => [
                 'application/vnd.mwop.1.status',
                 [
                     'vendor'   => 'mwop',
