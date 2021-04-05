@@ -12,11 +12,14 @@ use Interop\Container\ContainerInterface;
 use Laminas\ApiTools\Versioning\AcceptListener;
 use Laminas\ApiTools\Versioning\Factory\AcceptListenerFactory;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use ReflectionClass;
 
 class AcceptListenerFactoryTest extends TestCase
 {
-    public function setUp()
+    use ProphecyTrait;
+
+    public function setUp(): void
     {
         $this->container = $this->prophesize(ContainerInterface::class);
 
@@ -31,7 +34,7 @@ class AcceptListenerFactoryTest extends TestCase
         $factory = new AcceptListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(AcceptListener::class, $listener);
-        $this->assertAttributeSame($this->defaultRegexes, 'regexes', $listener);
+        $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
     public function testCreatesEmptyAcceptListenerIfNoVersioningConfigPresent()
@@ -41,7 +44,7 @@ class AcceptListenerFactoryTest extends TestCase
         $factory = new AcceptListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(AcceptListener::class, $listener);
-        $this->assertAttributeSame($this->defaultRegexes, 'regexes', $listener);
+        $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
     public function testCreatesEmptyAcceptListenerIfNoVersioningContentTypeConfigPresent()
@@ -51,7 +54,7 @@ class AcceptListenerFactoryTest extends TestCase
         $factory = new AcceptListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(AcceptListener::class, $listener);
-        $this->assertAttributeSame($this->defaultRegexes, 'regexes', $listener);
+        $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
     public function testConfiguresAcceptListeneWithRegexesFromConfiguration()
@@ -65,10 +68,20 @@ class AcceptListenerFactoryTest extends TestCase
         $factory = new AcceptListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(AcceptListener::class, $listener);
-        $this->assertAttributeContains('#foo=bar#', 'regexes', $listener);
+        $actualRegexes = self::getActualRegexes($listener);
+        $this->assertContains('#foo=bar#', $actualRegexes);
 
         foreach ($this->defaultRegexes as $regex) {
-            $this->assertAttributeContains($regex, 'regexes', $listener);
+            $this->assertContains($regex, $actualRegexes);
         }
+    }
+
+    private static function getActualRegexes(AcceptListener $listener): array
+    {
+        $reflectionClass = new ReflectionClass(AcceptListener::class);
+        $reflectionProperty = $reflectionClass->getProperty('regexes');
+        $reflectionProperty->setAccessible(true);
+
+        return $reflectionProperty->getValue($listener);
     }
 }

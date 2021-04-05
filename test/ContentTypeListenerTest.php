@@ -20,7 +20,7 @@ class ContentTypeListenerTest extends TestCase
     use EventListenerIntrospectionTrait;
     use RouteMatchFactoryTrait;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->event = new MvcEvent();
         $this->event->setRequest(new Request());

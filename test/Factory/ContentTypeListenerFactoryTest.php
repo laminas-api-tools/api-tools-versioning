@@ -12,11 +12,14 @@ use Interop\Container\ContainerInterface;
 use Laminas\ApiTools\Versioning\ContentTypeListener;
 use Laminas\ApiTools\Versioning\Factory\ContentTypeListenerFactory;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use ReflectionClass;
 
 class ContentTypeListenerFactoryTest extends TestCase
 {
-    public function setUp()
+    use ProphecyTrait;
+
+    public function setUp(): void
     {
         $this->container = $this->prophesize(ContainerInterface::class);
 
@@ -31,7 +34,7 @@ class ContentTypeListenerFactoryTest extends TestCase
         $factory = new ContentTypeListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(ContentTypeListener::class, $listener);
-        $this->assertAttributeSame($this->defaultRegexes, 'regexes', $listener);
+        $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
     public function testCreatesEmptyContentTypeListenerIfNoVersioningConfigPresent()
@@ -41,7 +44,7 @@ class ContentTypeListenerFactoryTest extends TestCase
         $factory = new ContentTypeListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(ContentTypeListener::class, $listener);
-        $this->assertAttributeSame($this->defaultRegexes, 'regexes', $listener);
+        $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
     public function testCreatesEmptyContentTypeListenerIfNoVersioningContentTypeConfigPresent()
@@ -51,7 +54,7 @@ class ContentTypeListenerFactoryTest extends TestCase
         $factory = new ContentTypeListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(ContentTypeListener::class, $listener);
-        $this->assertAttributeSame($this->defaultRegexes, 'regexes', $listener);
+        $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
     public function testConfiguresContentTypeListeneWithRegexesFromConfiguration()
@@ -65,10 +68,20 @@ class ContentTypeListenerFactoryTest extends TestCase
         $factory = new ContentTypeListenerFactory();
         $listener = $factory($this->container->reveal());
         $this->assertInstanceOf(ContentTypeListener::class, $listener);
-        $this->assertAttributeContains('#foo=bar#', 'regexes', $listener);
+        $actualRegexes = self::getActualRegexes($listener);
+        $this->assertContains('#foo=bar#', $actualRegexes);
 
         foreach ($this->defaultRegexes as $regex) {
-            $this->assertAttributeContains($regex, 'regexes', $listener);
+            $this->assertContains($regex, $actualRegexes);
         }
+    }
+
+    private static function getActualRegexes(ContentTypeListener $listener): array
+    {
+        $reflectionClass = new ReflectionClass(ContentTypeListener::class);
+        $reflectionProperty = $reflectionClass->getProperty('regexes');
+        $reflectionProperty->setAccessible(true);
+
+        return $reflectionProperty->getValue($listener);
     }
 }

@@ -14,13 +14,15 @@ use Laminas\EventManager\Test\EventListenerIntrospectionTrait;
 use Laminas\Http\Request;
 use Laminas\Mvc\MvcEvent;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class VersionListenerTest extends TestCase
 {
     use EventListenerIntrospectionTrait;
     use RouteMatchFactoryTrait;
+    use ProphecyTrait;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->event = new MvcEvent();
         $this->event->setRouteMatch($this->createRouteMatch([]));
