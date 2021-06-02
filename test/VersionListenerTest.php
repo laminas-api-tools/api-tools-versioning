@@ -26,7 +26,7 @@ class VersionListenerTest extends TestCase
         $this->listener = new VersionListener();
     }
 
-    public function testAttachesToRouteEventAtNegativePriority()
+    public function testAttachesToRouteEventAtNegativePriority(): void
     {
         $events = new EventManager();
         $this->listener->attach($events);
@@ -39,25 +39,25 @@ class VersionListenerTest extends TestCase
         );
     }
 
-    public function testDoesNothingIfNoRouteMatchPresentInEvent()
+    public function testDoesNothingIfNoRouteMatchPresentInEvent(): void
     {
         $event = new MvcEvent();
         $this->assertNull($this->listener->onRoute($event));
     }
 
-    public function testDoesNothingIfNoVersionAndNoLaminasVerVersionParameterInRouteMatch()
+    public function testDoesNothingIfNoVersionAndNoLaminasVerVersionParameterInRouteMatch(): void
     {
         $this->assertNull($this->listener->onRoute($this->event));
     }
 
-    public function testDoesNothingIfNoControllerParameterInRouteMatch()
+    public function testDoesNothingIfNoControllerParameterInRouteMatch(): void
     {
         $matches = $this->event->getRouteMatch();
         $matches->setParam('version', 2);
         $this->assertNull($this->listener->onRoute($this->event));
     }
 
-    public function testDoesNothingIfControllerHasNoVersionNamespace()
+    public function testDoesNothingIfControllerHasNoVersionNamespace(): void
     {
         $matches = $this->event->getRouteMatch();
         $matches->setParam('version', 2);
@@ -65,7 +65,7 @@ class VersionListenerTest extends TestCase
         $this->assertNull($this->listener->onRoute($this->event));
     }
 
-    public function testDoesNothingIfVersionAndControllerVersionNamespaceAreSame()
+    public function testDoesNothingIfVersionAndControllerVersionNamespaceAreSame(): void
     {
         $matches = $this->event->getRouteMatch();
         $matches->setParam('version', 2);
@@ -73,7 +73,7 @@ class VersionListenerTest extends TestCase
         $this->assertNull($this->listener->onRoute($this->event));
     }
 
-    public function testAltersControllerVersionNamespaceToReflectVersion()
+    public function testAltersControllerVersionNamespaceToReflectVersion(): void
     {
         $matches = $this->event->getRouteMatch();
         $matches->setParam('version', 2);
@@ -86,7 +86,7 @@ class VersionListenerTest extends TestCase
     /**
      * @group 12
      */
-    public function testAltersControllerVersionNamespaceToReflectVersionForOptionsRequests()
+    public function testAltersControllerVersionNamespaceToReflectVersionForOptionsRequests(): void
     {
         $request = $this->prophesize(Request::class);
         $request->isOptions()->shouldNotBeCalled();

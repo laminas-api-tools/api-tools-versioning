@@ -60,6 +60,8 @@ class PrototypeRouteListener implements ListenerAggregateInterface
      * Looks for api-tools-versioning.url and router configuration; if both present,
      * injects the route prototype and adds a chain route to each route listed
      * in the api-tools-versioning.url array.
+     *
+     * @return void
      */
     public function onMergeConfig(ModuleEvent $e)
     {

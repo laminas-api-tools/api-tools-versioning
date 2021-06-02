@@ -29,6 +29,8 @@ class VersionListener implements ListenerAggregateInterface
 
     /**
      * Determine if versioning is in the route matches, and update the controller accordingly
+     *
+     * @return RouteMatch|V2RouteMatch|null
      */
     public function onRoute(MvcEvent $e)
     {

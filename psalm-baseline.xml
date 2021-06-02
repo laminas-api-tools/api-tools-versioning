@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="3.18.2@19aa905f7c3c7350569999a93c40ae91ae4e1626">
+  <file src="src/AcceptListener.php">
+    <MixedArgument occurrences="1">
+      <code>$regex</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$regex</code>
+    </MixedAssignment>
+  </file>
+  <file src="src/ContentTypeListener.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>is_string($regex)</code>
+    </DocblockTypeContradiction>
+    <MixedArgument occurrences="1">
+      <code>$regex</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$regex</code>
+    </MixedAssignment>
+    <UndefinedClass occurrences="1">
+      <code>V2RouteMatch</code>
+    </UndefinedClass>
+    <UndefinedDocblockClass occurrences="1">
+      <code>RouteMatch|V2RouteMatch</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="src/Factory/AcceptListenerFactory.php">
+    <MixedArgument occurrences="1">
+      <code>$regexp</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="3">
+      <code>$config</code>
+      <code>$config</code>
+      <code>$regexp</code>
+    </MixedAssignment>
+  </file>
+  <file src="src/Factory/ContentTypeListenerFactory.php">
+    <MixedArgument occurrences="1">
+      <code>$regexp</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="3">
+      <code>$config</code>
+      <code>$config</code>
+      <code>$regexp</code>
+    </MixedAssignment>
+  </file>
+  <file src="src/Module.php">
+    <MissingConstructor occurrences="1">
+      <code>$prototypeRouteListener</code>
+    </MissingConstructor>
+    <MixedAssignment occurrences="2">
+      <code>$events</code>
+      <code>$services</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="8">
+      <code>attach</code>
+      <code>attach</code>
+      <code>attach</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>getEventManager</code>
+      <code>getServiceManager</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>include __DIR__ . '/../config/module.config.php'</code>
+    </MixedReturnStatement>
+    <PossiblyInvalidMethodCall occurrences="2">
+      <code>getEventManager</code>
+      <code>getServiceManager</code>
+    </PossiblyInvalidMethodCall>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>$this-&gt;prototypeRouteListener</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/PrototypeRouteListener.php">
+    <MixedArgument occurrences="5">
+      <code>$config</code>
+      <code>$config['router']['routes'][$routeName]['options']</code>
+      <code>$config['router']['routes'][$routeName]['options']['route']</code>
+      <code>$route</code>
+      <code>$route</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="9">
+      <code>$config['api-tools-versioning']</code>
+      <code>$config['api-tools-versioning']['default_version']</code>
+      <code>$config['api-tools-versioning']['default_version']</code>
+      <code>$config['api-tools-versioning']['uri']</code>
+      <code>$config['router']</code>
+      <code>$config['router']</code>
+      <code>$config['router']</code>
+      <code>$config['router']['routes']</code>
+      <code>$config['router']['routes']</code>
+    </MixedArrayAccess>
+    <MixedArrayAssignment occurrences="4">
+      <code>$config['router']</code>
+      <code>$config['router']</code>
+      <code>$routeVersion['defaults']['version']</code>
+      <code>$this-&gt;versionRouteOptions['defaults']['version']</code>
+    </MixedArrayAssignment>
+    <MixedArrayOffset occurrences="8">
+      <code>$config['api-tools-versioning']['default_version'][$routeName]</code>
+      <code>$config['api-tools-versioning']['default_version'][$routeName]</code>
+      <code>$config['router']['routes'][$routeName]</code>
+      <code>$config['router']['routes'][$routeName]</code>
+      <code>$config['router']['routes'][$routeName]</code>
+      <code>$config['router']['routes'][$routeName]</code>
+      <code>$config['router']['routes'][$routeName]</code>
+      <code>$config['router']['routes'][$routeName]</code>
+    </MixedArrayOffset>
+    <MixedAssignment occurrences="6">
+      <code>$config</code>
+      <code>$filtered[]</code>
+      <code>$route</code>
+      <code>$routeName</code>
+      <code>$routeVersion['defaults']['version']</code>
+      <code>$routes</code>
+    </MixedAssignment>
+    <MixedOperand occurrences="1">
+      <code>$config['router']['routes'][$routeName]['options']['route']</code>
+    </MixedOperand>
+  </file>
+  <file src="src/VersionListener.php">
+    <MixedInferredReturnType occurrences="2">
+      <code>RouteMatch|V2RouteMatch|null</code>
+      <code>int|false</code>
+    </MixedInferredReturnType>
+    <UndefinedClass occurrences="1">
+      <code>V2RouteMatch</code>
+    </UndefinedClass>
+    <UndefinedDocblockClass occurrences="2">
+      <code>RouteMatch|V2RouteMatch</code>
+      <code>RouteMatch|V2RouteMatch|null</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="test/ContentTypeListenerTest.php">
+    <MixedAssignment occurrences="13">
+      <code>$expected</code>
+      <code>$headers</code>
+      <code>$headers</code>
+      <code>$headers</code>
+      <code>$headers</code>
+      <code>$request</code>
+      <code>$request</code>
+      <code>$request</code>
+      <code>$request</code>
+      <code>$routeMatch</code>
+      <code>$routeMatch</code>
+      <code>$routeMatch</code>
+      <code>$routeMatch</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="36">
+      <code>addHeaderLine</code>
+      <code>addHeaderLine</code>
+      <code>addHeaderLine</code>
+      <code>addHeaderLine</code>
+      <code>addRegexp</code>
+      <code>addRegexp</code>
+      <code>attach</code>
+      <code>getHeaders</code>
+      <code>getHeaders</code>
+      <code>getHeaders</code>
+      <code>getHeaders</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getRequest</code>
+      <code>getRequest</code>
+      <code>getRequest</code>
+      <code>getRequest</code>
+      <code>getRouteMatch</code>
+      <code>getRouteMatch</code>
+      <code>getRouteMatch</code>
+      <code>getRouteMatch</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+    </MixedMethodCall>
+    <PossiblyInvalidArgument occurrences="2">
+      <code>$this-&gt;createRouteMatch([])</code>
+      <code>$this-&gt;createRouteMatch([])</code>
+    </PossiblyInvalidArgument>
+    <UndefinedThisPropertyAssignment occurrences="2">
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;listener</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="13">
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+    </UndefinedThisPropertyFetch>
+  </file>
+  <file src="test/Factory/AcceptListenerFactoryTest.php">
+    <MixedArgument occurrences="4">
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$regex</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="18">
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>has</code>
+      <code>has</code>
+      <code>has</code>
+      <code>has</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>$reflectionProperty-&gt;getValue($listener)</code>
+    </MixedReturnStatement>
+    <UndefinedThisPropertyAssignment occurrences="2">
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;defaultRegexes</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="8">
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;defaultRegexes</code>
+      <code>$this-&gt;defaultRegexes</code>
+      <code>$this-&gt;defaultRegexes</code>
+      <code>$this-&gt;defaultRegexes</code>
+    </UndefinedThisPropertyFetch>
+  </file>
+  <file src="test/Factory/ContentTypeListenerFactoryTest.php">
+    <MixedArgument occurrences="4">
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$regex</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="18">
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>has</code>
+      <code>has</code>
+      <code>has</code>
+      <code>has</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>$reflectionProperty-&gt;getValue($listener)</code>
+    </MixedReturnStatement>
+    <UndefinedThisPropertyAssignment occurrences="2">
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;defaultRegexes</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="8">
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;container</code>
+      <code>$this-&gt;defaultRegexes</code>
+      <code>$this-&gt;defaultRegexes</code>
+      <code>$this-&gt;defaultRegexes</code>
+      <code>$this-&gt;defaultRegexes</code>
+    </UndefinedThisPropertyFetch>
+  </file>
+  <file src="test/ModuleTest.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$events</code>
+    </ArgumentTypeCoercion>
+    <MixedArgument occurrences="4">
+      <code>$config['service_manager']</code>
+      <code>$this-&gt;app</code>
+      <code>$this-&gt;events</code>
+      <code>$this-&gt;services</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="1">
+      <code>$config['service_manager']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="2">
+      <code>$config</code>
+      <code>$listener</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="3">
+      <code>getPrototypeRouteListener</code>
+      <code>init</code>
+      <code>onBootstrap</code>
+    </MixedMethodCall>
+    <UndefinedThisPropertyAssignment occurrences="4">
+      <code>$this-&gt;app</code>
+      <code>$this-&gt;events</code>
+      <code>$this-&gt;module</code>
+      <code>$this-&gt;services</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="5">
+      <code>$this-&gt;app</code>
+      <code>$this-&gt;events</code>
+      <code>$this-&gt;module</code>
+      <code>$this-&gt;module</code>
+      <code>$this-&gt;services</code>
+    </UndefinedThisPropertyFetch>
+  </file>
+  <file src="test/PrototypeRouteListenerTest.php">
+    <MixedArgument occurrences="35">
+      <code>$config</code>
+      <code>$config</code>
+      <code>$config</code>
+      <code>$config</code>
+      <code>$options</code>
+      <code>$options</code>
+      <code>$options</code>
+      <code>$options</code>
+      <code>$options</code>
+      <code>$options</code>
+      <code>$options</code>
+      <code>$options['constraints']</code>
+      <code>$options['constraints']</code>
+      <code>$options['constraints']</code>
+      <code>$options['defaults']</code>
+      <code>$options['defaults']</code>
+      <code>$options['defaults']</code>
+      <code>$options['route']</code>
+      <code>$routeConfig</code>
+      <code>$routeConfig</code>
+      <code>$routeConfig</code>
+      <code>$routeConfig</code>
+      <code>$routeName</code>
+      <code>$routeName</code>
+      <code>$routerConfig</code>
+      <code>$routesConfig</code>
+      <code>$routesConfig</code>
+      <code>$routesConfig</code>
+      <code>$routesConfig</code>
+      <code>$this-&gt;config['router']['routes']</code>
+      <code>$this-&gt;config['router']['routes']</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="30">
+      <code>$config['router']</code>
+      <code>$config['router']</code>
+      <code>$config['router']</code>
+      <code>$config['router']</code>
+      <code>$options['constraints']</code>
+      <code>$options['constraints']</code>
+      <code>$options['constraints']</code>
+      <code>$options['constraints']</code>
+      <code>$options['constraints']</code>
+      <code>$options['constraints']</code>
+      <code>$options['defaults']</code>
+      <code>$options['defaults']</code>
+      <code>$options['defaults']</code>
+      <code>$options['defaults']</code>
+      <code>$options['defaults']</code>
+      <code>$options['defaults']</code>
+      <code>$options['route']</code>
+      <code>$routeConfig['options']</code>
+      <code>$routeConfig['options']</code>
+      <code>$routeConfig['options']</code>
+      <code>$routerConfig['routes']</code>
+      <code>$routerConfig['routes']</code>
+      <code>$routerConfig['routes']</code>
+      <code>$routerConfig['routes']</code>
+      <code>$routesConfig[$routeName]</code>
+      <code>$routesConfig[$routeName]</code>
+      <code>$routesConfig[$routeName]</code>
+      <code>$routesConfig[$routeName]</code>
+      <code>$this-&gt;config['router']</code>
+      <code>$this-&gt;config['router']</code>
+    </MixedArrayAccess>
+    <MixedArrayAssignment occurrences="4">
+      <code>$this-&gt;config['api-tools-versioning']</code>
+      <code>$this-&gt;config['api-tools-versioning']</code>
+      <code>$this-&gt;config['api-tools-versioning']</code>
+      <code>$this-&gt;config['api-tools-versioning']</code>
+    </MixedArrayAssignment>
+    <MixedArrayOffset occurrences="2">
+      <code>$routesConfig[$routeName]</code>
+      <code>$routesConfig[$routeName]</code>
+    </MixedArrayOffset>
+    <MixedAssignment occurrences="22">
+      <code>$apiVersion</code>
+      <code>$config</code>
+      <code>$config</code>
+      <code>$config</code>
+      <code>$config</code>
+      <code>$options</code>
+      <code>$options</code>
+      <code>$options</code>
+      <code>$routeConfig</code>
+      <code>$routeConfig</code>
+      <code>$routeConfig</code>
+      <code>$routeConfig</code>
+      <code>$routeName</code>
+      <code>$routeName</code>
+      <code>$routerConfig</code>
+      <code>$routerConfig</code>
+      <code>$routerConfig</code>
+      <code>$routerConfig</code>
+      <code>$routesConfig</code>
+      <code>$routesConfig</code>
+      <code>$routesConfig</code>
+      <code>$routesConfig</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="4">
+      <code>array</code>
+      <code>array</code>
+      <code>array</code>
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="7">
+      <code>getMergedConfig</code>
+      <code>getMergedConfig</code>
+      <code>getMergedConfig</code>
+      <code>getMergedConfig</code>
+      <code>setMergedConfig</code>
+      <code>setMergedConfig</code>
+      <code>setMergedConfig</code>
+    </MixedMethodCall>
+    <UndefinedThisPropertyAssignment occurrences="7">
+      <code>$this-&gt;config</code>
+      <code>$this-&gt;config</code>
+      <code>$this-&gt;config</code>
+      <code>$this-&gt;config</code>
+      <code>$this-&gt;config</code>
+      <code>$this-&gt;configListener</code>
+      <code>$this-&gt;event</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="11">
+      <code>$this-&gt;config</code>
+      <code>$this-&gt;config</code>
+      <code>$this-&gt;config</code>
+      <code>$this-&gt;configListener</code>
+      <code>$this-&gt;configListener</code>
+      <code>$this-&gt;configListener</code>
+      <code>$this-&gt;configListener</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+    </UndefinedThisPropertyFetch>
+  </file>
+  <file src="test/RouteMatchFactoryTrait.php">
+    <InvalidStringClass occurrences="1">
+      <code>new $class($params)</code>
+    </InvalidStringClass>
+    <MoreSpecificReturnType occurrences="1">
+      <code>RouteMatch|V2RouteMatch</code>
+    </MoreSpecificReturnType>
+    <UndefinedDocblockClass occurrences="1">
+      <code>RouteMatch|V2RouteMatch</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="test/VersionListenerTest.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>$this-&gt;getRouteMatchClass()</code>
+      <code>$this-&gt;getRouteMatchClass()</code>
+    </ArgumentTypeCoercion>
+    <MixedAssignment occurrences="7">
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$matches</code>
+      <code>$result</code>
+      <code>$result</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="25">
+      <code>attach</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getRouteMatch</code>
+      <code>getRouteMatch</code>
+      <code>getRouteMatch</code>
+      <code>getRouteMatch</code>
+      <code>getRouteMatch</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>onRoute</code>
+      <code>setParam</code>
+      <code>setParam</code>
+      <code>setParam</code>
+      <code>setParam</code>
+      <code>setParam</code>
+      <code>setParam</code>
+      <code>setParam</code>
+      <code>setParam</code>
+      <code>setParam</code>
+      <code>setRequest</code>
+    </MixedMethodCall>
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$this-&gt;createRouteMatch([])</code>
+    </PossiblyInvalidArgument>
+    <UndefinedThisPropertyAssignment occurrences="2">
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;listener</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="14">
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;event</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+      <code>$this-&gt;listener</code>
+    </UndefinedThisPropertyFetch>
+  </file>
+</files>

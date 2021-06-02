@@ -35,7 +35,7 @@ class ModuleTest extends TestCase
         $this->module = new Module();
     }
 
-    public function testOnBootstrapMethodRegistersListenersWithEventManager()
+    public function testOnBootstrapMethodRegistersListenersWithEventManager(): void
     {
         $config = include __DIR__ . '/../config/module.config.php';
         (new Config($config['service_manager']))->configureServiceManager($this->services);
@@ -63,7 +63,7 @@ class ModuleTest extends TestCase
         }
     }
 
-    public function testInitMethodRegistersPrototypeListenerWithModuleEventManager()
+    public function testInitMethodRegistersPrototypeListenerWithModuleEventManager(): void
     {
         $moduleManager = new ModuleManager([]);
         $this->module->init($moduleManager);

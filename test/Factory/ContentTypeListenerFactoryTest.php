@@ -24,7 +24,7 @@ class ContentTypeListenerFactoryTest extends TestCase
         $this->defaultRegexes = $props['regexes'];
     }
 
-    public function testCreatesEmptyContentTypeListenerIfNoConfigServicePresent()
+    public function testCreatesEmptyContentTypeListenerIfNoConfigServicePresent(): void
     {
         $this->container->has('config')->willReturn(false);
         $factory  = new ContentTypeListenerFactory();
@@ -33,7 +33,7 @@ class ContentTypeListenerFactoryTest extends TestCase
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
-    public function testCreatesEmptyContentTypeListenerIfNoVersioningConfigPresent()
+    public function testCreatesEmptyContentTypeListenerIfNoVersioningConfigPresent(): void
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn(['foo' => 'bar']);
@@ -43,7 +43,7 @@ class ContentTypeListenerFactoryTest extends TestCase
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
-    public function testCreatesEmptyContentTypeListenerIfNoVersioningContentTypeConfigPresent()
+    public function testCreatesEmptyContentTypeListenerIfNoVersioningContentTypeConfigPresent(): void
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn(['api-tools-versioning' => ['foo' => 'bar']]);
@@ -53,7 +53,7 @@ class ContentTypeListenerFactoryTest extends TestCase
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
-    public function testConfiguresContentTypeListeneWithRegexesFromConfiguration()
+    public function testConfiguresContentTypeListeneWithRegexesFromConfiguration(): void
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn([

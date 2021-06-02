@@ -75,6 +75,8 @@ class ContentTypeListener implements ListenerAggregateInterface
 
     /**
      * Match against the Content-Type header and inject into the route matches
+     *
+     * @return void
      */
     public function onRoute(MvcEvent $e)
     {
@@ -127,10 +129,10 @@ class ContentTypeListener implements ListenerAggregateInterface
     /**
      * Inject regex matches into the route matches
      *
-     * @param  RouteMatch|V2RouteMatch $routeMatches
-     * @param  array $matches
+     * @param RouteMatch|V2RouteMatch $routeMatches
+     * @param array $matches
      */
-    protected function injectRouteMatches($routeMatches, array $matches)
+    protected function injectRouteMatches($routeMatches, array $matches): void
     {
         foreach ($matches as $key => $value) {
             if (is_numeric($key) || is_int($key) || $value === '') {
