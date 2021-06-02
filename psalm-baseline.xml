@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.16@d03e5ef057d6adc656c0ff7e166c50b73b4f48f3">
+<files psalm-version="3.18.2@19aa905f7c3c7350569999a93c40ae91ae4e1626">
   <file src="src/AcceptListener.php">
     <MixedArgument occurrences="1">
       <code>$regex</code>
@@ -12,10 +12,6 @@
     <DocblockTypeContradiction occurrences="1">
       <code>is_string($regex)</code>
     </DocblockTypeContradiction>
-    <MissingReturnType occurrences="2">
-      <code>injectRouteMatches</code>
-      <code>onRoute</code>
-    </MissingReturnType>
     <MixedArgument occurrences="1">
       <code>$regex</code>
     </MixedArgument>
@@ -33,9 +29,6 @@
     <MixedArgument occurrences="1">
       <code>$regexp</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="1">
-      <code>$config['api-tools-versioning']</code>
-    </MixedArrayAccess>
     <MixedAssignment occurrences="3">
       <code>$config</code>
       <code>$config</code>
@@ -46,9 +39,6 @@
     <MixedArgument occurrences="1">
       <code>$regexp</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="1">
-      <code>$config['api-tools-versioning']</code>
-    </MixedArrayAccess>
     <MixedAssignment occurrences="3">
       <code>$config</code>
       <code>$config</code>
@@ -88,9 +78,6 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/PrototypeRouteListener.php">
-    <MissingReturnType occurrences="1">
-      <code>onMergeConfig</code>
-    </MissingReturnType>
     <MixedArgument occurrences="5">
       <code>$config</code>
       <code>$config['router']['routes'][$routeName]['options']</code>
@@ -138,47 +125,19 @@
     </MixedOperand>
   </file>
   <file src="src/VersionListener.php">
-    <MissingReturnType occurrences="1">
-      <code>onRoute</code>
-    </MissingReturnType>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType occurrences="2">
+      <code>RouteMatch|V2RouteMatch|null</code>
       <code>int|false</code>
     </MixedInferredReturnType>
     <UndefinedClass occurrences="1">
       <code>V2RouteMatch</code>
     </UndefinedClass>
-    <UndefinedDocblockClass occurrences="1">
+    <UndefinedDocblockClass occurrences="2">
       <code>RouteMatch|V2RouteMatch</code>
+      <code>RouteMatch|V2RouteMatch|null</code>
     </UndefinedDocblockClass>
   </file>
   <file src="test/ContentTypeListenerTest.php">
-    <MissingParamType occurrences="10">
-      <code>$header</code>
-      <code>$header</code>
-      <code>$header</code>
-      <code>$header</code>
-      <code>$resource</code>
-      <code>$resource</code>
-      <code>$vendor</code>
-      <code>$vendor</code>
-      <code>$version</code>
-      <code>$version</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="13">
-      <code>invalidDefaultContentTypes</code>
-      <code>mixedContentTypes</code>
-      <code>setUp</code>
-      <code>testAttachesToRouteEventAtNegativePriority</code>
-      <code>testDoesNothingIfNoRequestPresentInEvent</code>
-      <code>testDoesNothingIfNoRouteMatchPresentInEvent</code>
-      <code>testInjectsNothingIfContentTypeHeaderIsMissing</code>
-      <code>testInjectsNothingIntoRouteMatchesWhenContentTypeDoesNotMatchDefaultRegexp</code>
-      <code>testInjectsRouteMatchesWhenContentTypeMatchesDefaultRegexp</code>
-      <code>testWillInjectRouteMatchesForFirstRegexpToMatch</code>
-      <code>testWillInjectRouteMatchesWhenContentTypeMatchesCustomRegexp</code>
-      <code>validCustomContentTypes</code>
-      <code>validDefaultContentTypes</code>
-    </MissingReturnType>
     <MixedAssignment occurrences="13">
       <code>$expected</code>
       <code>$headers</code>
@@ -194,6 +153,12 @@
       <code>$routeMatch</code>
       <code>$routeMatch</code>
     </MixedAssignment>
+    <MixedInferredReturnType occurrences="4">
+      <code>array</code>
+      <code>array</code>
+      <code>array</code>
+      <code>array</code>
+    </MixedInferredReturnType>
     <MixedMethodCall occurrences="36">
       <code>addHeaderLine</code>
       <code>addHeaderLine</code>
@@ -236,21 +201,6 @@
       <code>$this-&gt;createRouteMatch([])</code>
       <code>$this-&gt;createRouteMatch([])</code>
     </PossiblyInvalidArgument>
-    <ReservedWord occurrences="13">
-      <code>$this-&gt;assertEquals($expected, $routeMatch-&gt;getParam($key, false))</code>
-      <code>$this-&gt;assertEquals($resource, $routeMatch-&gt;getParam('laminas_ver_resource', false))</code>
-      <code>$this-&gt;assertEquals($resource, $routeMatch-&gt;getParam('resource', false))</code>
-      <code>$this-&gt;assertEquals($vendor, $routeMatch-&gt;getParam('laminas_ver_vendor', false))</code>
-      <code>$this-&gt;assertEquals($version, $routeMatch-&gt;getParam('laminas_ver_version', false))</code>
-      <code>$this-&gt;assertEquals($version, $routeMatch-&gt;getParam('version', false))</code>
-      <code>$this-&gt;assertEquals('mwop', $routeMatch-&gt;getParam('vendor', false))</code>
-      <code>$this-&gt;assertFalse($routeMatch-&gt;getParam('laminas_ver_resource', false))</code>
-      <code>$this-&gt;assertFalse($routeMatch-&gt;getParam('laminas_ver_vendor', false))</code>
-      <code>$this-&gt;assertFalse($routeMatch-&gt;getParam('laminas_ver_version', false))</code>
-      <code>$this-&gt;assertNull($this-&gt;listener-&gt;onRoute($event))</code>
-      <code>$this-&gt;assertNull($this-&gt;listener-&gt;onRoute($event))</code>
-      <code>$this-&gt;assertNull($this-&gt;listener-&gt;onRoute($this-&gt;event))</code>
-    </ReservedWord>
     <UndefinedThisPropertyAssignment occurrences="2">
       <code>$this-&gt;event</code>
       <code>$this-&gt;listener</code>
@@ -272,20 +222,6 @@
     </UndefinedThisPropertyFetch>
   </file>
   <file src="test/Factory/AcceptListenerFactoryTest.php">
-    <DeprecatedMethod occurrences="5">
-      <code>assertAttributeContains</code>
-      <code>assertAttributeContains</code>
-      <code>assertAttributeSame</code>
-      <code>assertAttributeSame</code>
-      <code>assertAttributeSame</code>
-    </DeprecatedMethod>
-    <MissingReturnType occurrences="5">
-      <code>setUp</code>
-      <code>testConfiguresAcceptListeneWithRegexesFromConfiguration</code>
-      <code>testCreatesEmptyAcceptListenerIfNoConfigServicePresent</code>
-      <code>testCreatesEmptyAcceptListenerIfNoVersioningConfigPresent</code>
-      <code>testCreatesEmptyAcceptListenerIfNoVersioningContentTypeConfigPresent</code>
-    </MissingReturnType>
     <MixedArgument occurrences="4">
       <code>$this-&gt;container-&gt;reveal()</code>
       <code>$this-&gt;container-&gt;reveal()</code>
@@ -295,6 +231,9 @@
     <MixedAssignment occurrences="1">
       <code>$regex</code>
     </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
     <MixedMethodCall occurrences="18">
       <code>get</code>
       <code>get</code>
@@ -315,23 +254,9 @@
       <code>willReturn</code>
       <code>willReturn</code>
     </MixedMethodCall>
-    <RedundantConditionGivenDocblockType occurrences="4">
-      <code>assertInstanceOf</code>
-      <code>assertInstanceOf</code>
-      <code>assertInstanceOf</code>
-      <code>assertInstanceOf</code>
-    </RedundantConditionGivenDocblockType>
-    <ReservedWord occurrences="9">
-      <code>$this-&gt;assertAttributeContains($regex, 'regexes', $listener)</code>
-      <code>$this-&gt;assertAttributeContains('#foo=bar#', 'regexes', $listener)</code>
-      <code>$this-&gt;assertAttributeSame($this-&gt;defaultRegexes, 'regexes', $listener)</code>
-      <code>$this-&gt;assertAttributeSame($this-&gt;defaultRegexes, 'regexes', $listener)</code>
-      <code>$this-&gt;assertAttributeSame($this-&gt;defaultRegexes, 'regexes', $listener)</code>
-      <code>$this-&gt;assertInstanceOf(AcceptListener::class, $listener)</code>
-      <code>$this-&gt;assertInstanceOf(AcceptListener::class, $listener)</code>
-      <code>$this-&gt;assertInstanceOf(AcceptListener::class, $listener)</code>
-      <code>$this-&gt;assertInstanceOf(AcceptListener::class, $listener)</code>
-    </ReservedWord>
+    <MixedReturnStatement occurrences="1">
+      <code>$reflectionProperty-&gt;getValue($listener)</code>
+    </MixedReturnStatement>
     <UndefinedThisPropertyAssignment occurrences="2">
       <code>$this-&gt;container</code>
       <code>$this-&gt;defaultRegexes</code>
@@ -348,20 +273,6 @@
     </UndefinedThisPropertyFetch>
   </file>
   <file src="test/Factory/ContentTypeListenerFactoryTest.php">
-    <DeprecatedMethod occurrences="5">
-      <code>assertAttributeContains</code>
-      <code>assertAttributeContains</code>
-      <code>assertAttributeSame</code>
-      <code>assertAttributeSame</code>
-      <code>assertAttributeSame</code>
-    </DeprecatedMethod>
-    <MissingReturnType occurrences="5">
-      <code>setUp</code>
-      <code>testConfiguresContentTypeListeneWithRegexesFromConfiguration</code>
-      <code>testCreatesEmptyContentTypeListenerIfNoConfigServicePresent</code>
-      <code>testCreatesEmptyContentTypeListenerIfNoVersioningConfigPresent</code>
-      <code>testCreatesEmptyContentTypeListenerIfNoVersioningContentTypeConfigPresent</code>
-    </MissingReturnType>
     <MixedArgument occurrences="4">
       <code>$this-&gt;container-&gt;reveal()</code>
       <code>$this-&gt;container-&gt;reveal()</code>
@@ -371,6 +282,9 @@
     <MixedAssignment occurrences="1">
       <code>$regex</code>
     </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
     <MixedMethodCall occurrences="18">
       <code>get</code>
       <code>get</code>
@@ -391,23 +305,9 @@
       <code>willReturn</code>
       <code>willReturn</code>
     </MixedMethodCall>
-    <RedundantConditionGivenDocblockType occurrences="4">
-      <code>assertInstanceOf</code>
-      <code>assertInstanceOf</code>
-      <code>assertInstanceOf</code>
-      <code>assertInstanceOf</code>
-    </RedundantConditionGivenDocblockType>
-    <ReservedWord occurrences="9">
-      <code>$this-&gt;assertAttributeContains($regex, 'regexes', $listener)</code>
-      <code>$this-&gt;assertAttributeContains('#foo=bar#', 'regexes', $listener)</code>
-      <code>$this-&gt;assertAttributeSame($this-&gt;defaultRegexes, 'regexes', $listener)</code>
-      <code>$this-&gt;assertAttributeSame($this-&gt;defaultRegexes, 'regexes', $listener)</code>
-      <code>$this-&gt;assertAttributeSame($this-&gt;defaultRegexes, 'regexes', $listener)</code>
-      <code>$this-&gt;assertInstanceOf(ContentTypeListener::class, $listener)</code>
-      <code>$this-&gt;assertInstanceOf(ContentTypeListener::class, $listener)</code>
-      <code>$this-&gt;assertInstanceOf(ContentTypeListener::class, $listener)</code>
-      <code>$this-&gt;assertInstanceOf(ContentTypeListener::class, $listener)</code>
-    </ReservedWord>
+    <MixedReturnStatement occurrences="1">
+      <code>$reflectionProperty-&gt;getValue($listener)</code>
+    </MixedReturnStatement>
     <UndefinedThisPropertyAssignment occurrences="2">
       <code>$this-&gt;container</code>
       <code>$this-&gt;defaultRegexes</code>
@@ -427,11 +327,6 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>$events</code>
     </ArgumentTypeCoercion>
-    <MissingReturnType occurrences="3">
-      <code>setUp</code>
-      <code>testInitMethodRegistersPrototypeListenerWithModuleEventManager</code>
-      <code>testOnBootstrapMethodRegistersListenersWithEventManager</code>
-    </MissingReturnType>
     <MixedArgument occurrences="4">
       <code>$config['service_manager']</code>
       <code>$this-&gt;app</code>
@@ -450,9 +345,6 @@
       <code>init</code>
       <code>onBootstrap</code>
     </MixedMethodCall>
-    <ReservedWord occurrences="1">
-      <code>$this-&gt;assertInstanceOf(PrototypeRouteListener::class, $listener)</code>
-    </ReservedWord>
     <UndefinedThisPropertyAssignment occurrences="4">
       <code>$this-&gt;app</code>
       <code>$this-&gt;events</code>
@@ -468,28 +360,6 @@
     </UndefinedThisPropertyFetch>
   </file>
   <file src="test/PrototypeRouteListenerTest.php">
-    <InvalidScalarArgument occurrences="4">
-      <code>1</code>
-      <code>1</code>
-      <code>1</code>
-      <code>1</code>
-    </InvalidScalarArgument>
-    <MissingParamType occurrences="3">
-      <code>$apiVersion</code>
-      <code>$apiVersion</code>
-      <code>$position</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="9">
-      <code>defaultVersionValues</code>
-      <code>routesForWhichToVerifyPrototype</code>
-      <code>routesWithoutPrototype</code>
-      <code>setUp</code>
-      <code>specificDefaultVersionForWhichToVerifyPrototype</code>
-      <code>testEmptyConfigurationDoesNotInjectPrototypes</code>
-      <code>testPrototypeAddedToRoutesProvidedToListener</code>
-      <code>testPrototypeAddedToRoutesWithDefaultVersion</code>
-      <code>testPrototypeAddedToRoutesWithSpecificDefaultVersion</code>
-    </MissingReturnType>
     <MixedArgument occurrences="35">
       <code>$config</code>
       <code>$config</code>
@@ -569,8 +439,7 @@
       <code>$routesConfig[$routeName]</code>
       <code>$routesConfig[$routeName]</code>
     </MixedArrayOffset>
-    <MixedAssignment occurrences="23">
-      <code>$apiVersion</code>
+    <MixedAssignment occurrences="22">
       <code>$apiVersion</code>
       <code>$config</code>
       <code>$config</code>
@@ -594,6 +463,12 @@
       <code>$routesConfig</code>
       <code>$routesConfig</code>
     </MixedAssignment>
+    <MixedInferredReturnType occurrences="4">
+      <code>array</code>
+      <code>array</code>
+      <code>array</code>
+      <code>array</code>
+    </MixedInferredReturnType>
     <MixedMethodCall occurrences="7">
       <code>getMergedConfig</code>
       <code>getMergedConfig</code>
@@ -603,46 +478,6 @@
       <code>setMergedConfig</code>
       <code>setMergedConfig</code>
     </MixedMethodCall>
-    <PossiblyNullArgument occurrences="4">
-      <code>var_export($config, 1)</code>
-      <code>var_export($config, 1)</code>
-      <code>var_export($config, 1)</code>
-      <code>var_export($config, 1)</code>
-    </PossiblyNullArgument>
-    <ReservedWord occurrences="32">
-      <code>$this-&gt;assertArrayHasKey($routeName, $routesConfig)</code>
-      <code>$this-&gt;assertArrayHasKey($routeName, $routesConfig)</code>
-      <code>$this-&gt;assertArrayHasKey($routeName, $routesConfig)</code>
-      <code>$this-&gt;assertArrayHasKey($routeName, $routesConfig)</code>
-      <code>$this-&gt;assertArrayHasKey('constraints', $options)</code>
-      <code>$this-&gt;assertArrayHasKey('constraints', $options)</code>
-      <code>$this-&gt;assertArrayHasKey('constraints', $options)</code>
-      <code>$this-&gt;assertArrayHasKey('defaults', $options)</code>
-      <code>$this-&gt;assertArrayHasKey('defaults', $options)</code>
-      <code>$this-&gt;assertArrayHasKey('defaults', $options)</code>
-      <code>$this-&gt;assertArrayHasKey('options', $routeConfig)</code>
-      <code>$this-&gt;assertArrayHasKey('options', $routeConfig)</code>
-      <code>$this-&gt;assertArrayHasKey('options', $routeConfig)</code>
-      <code>$this-&gt;assertArrayHasKey('route', $options)</code>
-      <code>$this-&gt;assertArrayHasKey('router', $config, var_export($config, 1))</code>
-      <code>$this-&gt;assertArrayHasKey('router', $config, var_export($config, 1))</code>
-      <code>$this-&gt;assertArrayHasKey('router', $config, var_export($config, 1))</code>
-      <code>$this-&gt;assertArrayHasKey('router', $config, var_export($config, 1))</code>
-      <code>$this-&gt;assertArrayHasKey('version', $options['constraints'])</code>
-      <code>$this-&gt;assertArrayHasKey('version', $options['constraints'])</code>
-      <code>$this-&gt;assertArrayHasKey('version', $options['constraints'])</code>
-      <code>$this-&gt;assertArrayHasKey('version', $options['defaults'])</code>
-      <code>$this-&gt;assertArrayHasKey('version', $options['defaults'])</code>
-      <code>$this-&gt;assertArrayHasKey('version', $options['defaults'])</code>
-      <code>$this-&gt;assertArrayNotHasKey('chain_routes', $routeConfig)</code>
-      <code>$this-&gt;assertArrayNotHasKey('prototypes', $routerConfig)</code>
-      <code>$this-&gt;assertEquals($apiVersion, $options['defaults']['version'])</code>
-      <code>$this-&gt;assertEquals($apiVersion, $options['defaults']['version'])</code>
-      <code>$this-&gt;assertEquals($apiVersion, $options['defaults']['version'])</code>
-      <code>$this-&gt;assertEquals('\d+', $options['constraints']['version'])</code>
-      <code>$this-&gt;assertEquals('\d+', $options['constraints']['version'])</code>
-      <code>$this-&gt;assertEquals('\d+', $options['constraints']['version'])</code>
-    </ReservedWord>
     <UndefinedThisPropertyAssignment occurrences="7">
       <code>$this-&gt;config</code>
       <code>$this-&gt;config</code>
@@ -677,34 +512,11 @@
       <code>RouteMatch|V2RouteMatch</code>
     </UndefinedDocblockClass>
   </file>
-  <file src="test/TestAsset/Application.php">
-    <MissingPropertyType occurrences="2">
-      <code>$events</code>
-      <code>$services</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="4">
-      <code>getEventManager</code>
-      <code>getServiceManager</code>
-      <code>setEventManager</code>
-      <code>setServiceManager</code>
-    </MissingReturnType>
-  </file>
   <file src="test/VersionListenerTest.php">
     <ArgumentTypeCoercion occurrences="2">
       <code>$this-&gt;getRouteMatchClass()</code>
       <code>$this-&gt;getRouteMatchClass()</code>
     </ArgumentTypeCoercion>
-    <MissingReturnType occurrences="9">
-      <code>setUp</code>
-      <code>testAltersControllerVersionNamespaceToReflectVersion</code>
-      <code>testAltersControllerVersionNamespaceToReflectVersionForOptionsRequests</code>
-      <code>testAttachesToRouteEventAtNegativePriority</code>
-      <code>testDoesNothingIfControllerHasNoVersionNamespace</code>
-      <code>testDoesNothingIfNoControllerParameterInRouteMatch</code>
-      <code>testDoesNothingIfNoRouteMatchPresentInEvent</code>
-      <code>testDoesNothingIfNoVersionAndNoLaminasVerVersionParameterInRouteMatch</code>
-      <code>testDoesNothingIfVersionAndControllerVersionNamespaceAreSame</code>
-    </MissingReturnType>
     <MixedAssignment occurrences="7">
       <code>$matches</code>
       <code>$matches</code>
@@ -744,17 +556,6 @@
     <PossiblyInvalidArgument occurrences="1">
       <code>$this-&gt;createRouteMatch([])</code>
     </PossiblyInvalidArgument>
-    <ReservedWord occurrences="9">
-      <code>$this-&gt;assertEquals('Foo\V2\Rest\Bar\Controller', $result-&gt;getParam('controller'))</code>
-      <code>$this-&gt;assertEquals('Foo\V2\Rest\Bar\Controller', $result-&gt;getParam('controller'))</code>
-      <code>$this-&gt;assertInstanceOf($this-&gt;getRouteMatchClass(), $result)</code>
-      <code>$this-&gt;assertInstanceOf($this-&gt;getRouteMatchClass(), $result)</code>
-      <code>$this-&gt;assertNull($this-&gt;listener-&gt;onRoute($event))</code>
-      <code>$this-&gt;assertNull($this-&gt;listener-&gt;onRoute($this-&gt;event))</code>
-      <code>$this-&gt;assertNull($this-&gt;listener-&gt;onRoute($this-&gt;event))</code>
-      <code>$this-&gt;assertNull($this-&gt;listener-&gt;onRoute($this-&gt;event))</code>
-      <code>$this-&gt;assertNull($this-&gt;listener-&gt;onRoute($this-&gt;event))</code>
-    </ReservedWord>
     <UndefinedThisPropertyAssignment occurrences="2">
       <code>$this-&gt;event</code>
       <code>$this-&gt;listener</code>

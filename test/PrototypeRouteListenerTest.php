@@ -69,9 +69,12 @@ class PrototypeRouteListenerTest extends TestCase
 
     /**
      * @dataProvider routesWithoutPrototype
+     *
      * @param array $routes
+     *
+     * @return void
      */
-    public function testEmptyConfigurationDoesNotInjectPrototypes(array $routes)
+    public function testEmptyConfigurationDoesNotInjectPrototypes(array $routes): void
     {
         $listener = new PrototypeRouteListener();
         $listener->onMergeConfig($this->event);
@@ -102,10 +105,13 @@ class PrototypeRouteListenerTest extends TestCase
 
     /**
      * @dataProvider routesForWhichToVerifyPrototype
+     *
      * @param int|null $apiVersion
      * @param int $position
+     *
+     * @return void
      */
-    public function testPrototypeAddedToRoutesProvidedToListener(array $routes, $apiVersion = null, $position = 0)
+    public function testPrototypeAddedToRoutesProvidedToListener(array $routes, $apiVersion = null, $position = 0): void
     {
         $this->config['api-tools-versioning'] = [
             'uri' => $routes,
@@ -157,9 +163,12 @@ class PrototypeRouteListenerTest extends TestCase
 
     /**
      * @dataProvider defaultVersionValues
+     *
      * @param int|null $apiVersion
+     *
+     * @return void
      */
-    public function testPrototypeAddedToRoutesWithDefaultVersion($apiVersion = null)
+    public function testPrototypeAddedToRoutesWithDefaultVersion($apiVersion = null): void
     {
         $routes                               = array_keys($this->config['router']['routes']);
         $this->config['api-tools-versioning'] = [
@@ -207,8 +216,10 @@ class PrototypeRouteListenerTest extends TestCase
 
     /**
      * @dataProvider specificDefaultVersionForWhichToVerifyPrototype
+     *
+     * @return void
      */
-    public function testPrototypeAddedToRoutesWithSpecificDefaultVersion(array $defaultVersions)
+    public function testPrototypeAddedToRoutesWithSpecificDefaultVersion(array $defaultVersions): void
     {
         $routes                               = array_keys($this->config['router']['routes']);
         $this->config['api-tools-versioning'] = [

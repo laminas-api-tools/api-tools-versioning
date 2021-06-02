@@ -15,12 +15,12 @@ class Application
     /** @var ServiceLocatorInterface|null */
     protected $services;
 
-    public function setServiceManager(ServiceLocatorInterface $services)
+    public function setServiceManager(ServiceLocatorInterface $services): void
     {
         $this->services = $services;
     }
 
-    public function setEventManager(EventManagerInterface $events)
+    public function setEventManager(EventManagerInterface $events): void
     {
         $this->events = $events;
     }

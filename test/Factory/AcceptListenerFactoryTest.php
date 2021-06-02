@@ -24,7 +24,7 @@ class AcceptListenerFactoryTest extends TestCase
         $this->defaultRegexes = $props['regexes'];
     }
 
-    public function testCreatesEmptyAcceptListenerIfNoConfigServicePresent()
+    public function testCreatesEmptyAcceptListenerIfNoConfigServicePresent(): void
     {
         $this->container->has('config')->willReturn(false);
         $factory  = new AcceptListenerFactory();
@@ -33,7 +33,7 @@ class AcceptListenerFactoryTest extends TestCase
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
-    public function testCreatesEmptyAcceptListenerIfNoVersioningConfigPresent()
+    public function testCreatesEmptyAcceptListenerIfNoVersioningConfigPresent(): void
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn(['foo' => 'bar']);
@@ -43,7 +43,7 @@ class AcceptListenerFactoryTest extends TestCase
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
-    public function testCreatesEmptyAcceptListenerIfNoVersioningContentTypeConfigPresent()
+    public function testCreatesEmptyAcceptListenerIfNoVersioningContentTypeConfigPresent(): void
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn(['api-tools-versioning' => ['foo' => 'bar']]);
@@ -53,7 +53,7 @@ class AcceptListenerFactoryTest extends TestCase
         $this->assertSame($this->defaultRegexes, self::getActualRegexes($listener));
     }
 
-    public function testConfiguresAcceptListeneWithRegexesFromConfiguration()
+    public function testConfiguresAcceptListeneWithRegexesFromConfiguration(): void
     {
         $this->container->has('config')->willReturn(true);
         $this->container->get('config')->willReturn([
