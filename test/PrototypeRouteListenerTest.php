@@ -69,10 +69,7 @@ class PrototypeRouteListenerTest extends TestCase
 
     /**
      * @dataProvider routesWithoutPrototype
-     *
      * @param array $routes
-     *
-     * @return void
      */
     public function testEmptyConfigurationDoesNotInjectPrototypes(array $routes): void
     {
@@ -105,11 +102,8 @@ class PrototypeRouteListenerTest extends TestCase
 
     /**
      * @dataProvider routesForWhichToVerifyPrototype
-     *
      * @param int|null $apiVersion
      * @param int $position
-     *
-     * @return void
      */
     public function testPrototypeAddedToRoutesProvidedToListener(array $routes, $apiVersion = null, $position = 0): void
     {
@@ -163,10 +157,7 @@ class PrototypeRouteListenerTest extends TestCase
 
     /**
      * @dataProvider defaultVersionValues
-     *
      * @param int|null $apiVersion
-     *
-     * @return void
      */
     public function testPrototypeAddedToRoutesWithDefaultVersion($apiVersion = null): void
     {
@@ -216,8 +207,6 @@ class PrototypeRouteListenerTest extends TestCase
 
     /**
      * @dataProvider specificDefaultVersionForWhichToVerifyPrototype
-     *
-     * @return void
      */
     public function testPrototypeAddedToRoutesWithSpecificDefaultVersion(array $defaultVersions): void
     {

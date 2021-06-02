@@ -131,8 +131,6 @@ class ContentTypeListener implements ListenerAggregateInterface
      *
      * @param RouteMatch|V2RouteMatch $routeMatches
      * @param array $matches
-     *
-     * @return void
      */
     protected function injectRouteMatches($routeMatches, array $matches): void
     {

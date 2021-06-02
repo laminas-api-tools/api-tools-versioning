@@ -85,8 +85,6 @@ class VersionListenerTest extends TestCase
 
     /**
      * @group 12
-     *
-     * @return void
      */
     public function testAltersControllerVersionNamespaceToReflectVersionForOptionsRequests(): void
     {

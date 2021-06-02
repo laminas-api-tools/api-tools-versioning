@@ -153,12 +153,6 @@
       <code>$routeMatch</code>
       <code>$routeMatch</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="4">
-      <code>array</code>
-      <code>array</code>
-      <code>array</code>
-      <code>array</code>
-    </MixedInferredReturnType>
     <MixedMethodCall occurrences="36">
       <code>addHeaderLine</code>
       <code>addHeaderLine</code>

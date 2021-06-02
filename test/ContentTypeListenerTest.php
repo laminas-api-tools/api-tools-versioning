@@ -57,8 +57,15 @@ class ContentTypeListenerTest extends TestCase
         $this->assertNull($this->listener->onRoute($this->event));
     }
 
-    /** @return array */
-    public function validDefaultContentTypes()
+    /**
+     * @psalm-return array<array-key, array{
+     *     0: string,
+     *     1: string,
+     *     2: int,
+     *     3: string
+     * }>
+     */
+    public function validDefaultContentTypes(): array
     {
         return [
             [
@@ -78,16 +85,13 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider validDefaultContentTypes
-     *
-     * @param string $header
-     * @param string $vendor
-     * @param int $version
-     * @param string $resource
-     *
-     * @return void
      */
-    public function testInjectsRouteMatchesWhenContentTypeMatchesDefaultRegexp($header, $vendor, $version, $resource): void
-    {
+    public function testInjectsRouteMatchesWhenContentTypeMatchesDefaultRegexp(
+        string $header,
+        string $vendor,
+        int $version,
+        string $resource
+    ): void {
         $request = $this->event->getRequest();
         $headers = $request->getHeaders();
         $headers->addHeaderLine('Content-Type', $header);
@@ -99,8 +103,8 @@ class ContentTypeListenerTest extends TestCase
         $this->assertEquals($resource, $routeMatch->getParam('laminas_ver_resource', false));
     }
 
-    /** @return array */
-    public function invalidDefaultContentTypes()
+    /** @psalm-return array<string, array{0: string}> */
+    public function invalidDefaultContentTypes(): array
     {
         return [
             'bad-prefix'                   => ['application/vendor.mwop.v1.status'],
@@ -112,12 +116,8 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider invalidDefaultContentTypes
-     *
-     * @param string $header
-     *
-     * @return void
      */
-    public function testInjectsNothingIntoRouteMatchesWhenContentTypeDoesNotMatchDefaultRegexp($header): void
+    public function testInjectsNothingIntoRouteMatchesWhenContentTypeDoesNotMatchDefaultRegexp(string $header): void
     {
         $request = $this->event->getRequest();
         $headers = $request->getHeaders();
@@ -130,8 +130,15 @@ class ContentTypeListenerTest extends TestCase
         $this->assertFalse($routeMatch->getParam('laminas_ver_resource', false));
     }
 
-    /** @return array */
-    public function validCustomContentTypes()
+    /**
+     * @psalm-return array<array-key, array{
+     *     0: string,
+     *     1: string,
+     *     2: int,
+     *     3: string
+     * }>
+     */
+    public function validCustomContentTypes(): array
     {
         return [
             [
@@ -151,16 +158,13 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider validCustomContentTypes
-     *
-     * @param string $header
-     * @param string $vendor
-     * @param int $version
-     * @param string $resource
-     *
-     * @return void
      */
-    public function testWillInjectRouteMatchesWhenContentTypeMatchesCustomRegexp($header, $vendor, $version, $resource): void
-    {
+    public function testWillInjectRouteMatchesWhenContentTypeMatchesCustomRegexp(
+        string $header,
+        string $vendor,
+        int $version,
+        string $resource
+    ): void {
         $this->listener->addRegexp(
             '#application/vendor\.(?<vendor>mwop)\.(?<version>\d+)\.(?<resource>(?:user|status))#'
         );
@@ -176,8 +180,13 @@ class ContentTypeListenerTest extends TestCase
         $this->assertEquals($resource, $routeMatch->getParam('resource', false));
     }
 
-    /** @return array */
-    public function mixedContentTypes()
+    /**
+     * @psalm-return array<string, array{
+     *     0: string,
+     *     1: array<string, string|int>
+     * }>
+     */
+    public function mixedContentTypes(): array
     {
         return [
             'default' => [
@@ -201,13 +210,8 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider mixedContentTypes
-     *
-     * @param string $header
-     * @param array $matches
-     *
-     * @return void
      */
-    public function testWillInjectRouteMatchesForFirstRegexpToMatch($header, array $matches): void
+    public function testWillInjectRouteMatchesForFirstRegexpToMatch(string $header, array $matches): void
     {
         $this->listener->addRegexp('#application/vnd\.(?<vendor>mwop)\.(?<version>\d+)\.(?<resource>(?:user|status))#');
 
