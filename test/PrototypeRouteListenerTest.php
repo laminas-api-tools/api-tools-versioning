@@ -77,7 +77,7 @@ class PrototypeRouteListenerTest extends TestCase
         $listener->onMergeConfig($this->event);
 
         $config = $this->configListener->getMergedConfig(false);
-        $this->assertArrayHasKey('router', $config, var_export($config, 1));
+        $this->assertArrayHasKey('router', $config, var_export($config, true));
         $routerConfig = $config['router'];
         $this->assertArrayNotHasKey('prototypes', $routerConfig);
 
@@ -122,7 +122,7 @@ class PrototypeRouteListenerTest extends TestCase
         $listener->onMergeConfig($this->event);
 
         $config = $this->configListener->getMergedConfig(false);
-        $this->assertArrayHasKey('router', $config, var_export($config, 1));
+        $this->assertArrayHasKey('router', $config, var_export($config, true));
         $routerConfig = $config['router'];
 
         $routesConfig = $routerConfig['routes'];
@@ -172,7 +172,7 @@ class PrototypeRouteListenerTest extends TestCase
         $listener->onMergeConfig($this->event);
 
         $config = $this->configListener->getMergedConfig(false);
-        $this->assertArrayHasKey('router', $config, var_export($config, 1));
+        $this->assertArrayHasKey('router', $config, var_export($config, true));
         $routerConfig = $config['router'];
 
         $routesConfig = $routerConfig['routes'];
@@ -221,7 +221,7 @@ class PrototypeRouteListenerTest extends TestCase
         $listener->onMergeConfig($this->event);
 
         $config = $this->configListener->getMergedConfig(false);
-        $this->assertArrayHasKey('router', $config, var_export($config, 1));
+        $this->assertArrayHasKey('router', $config, var_export($config, true));
         $routerConfig = $config['router'];
 
         $routesConfig = $routerConfig['routes'];
