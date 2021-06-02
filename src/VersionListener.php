@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\ApiTools\Versioning;
 
@@ -14,6 +10,10 @@ use Laminas\EventManager\ListenerAggregateTrait;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
+
+use function preg_match;
+use function preg_quote;
+use function preg_replace;
 
 class VersionListener implements ListenerAggregateInterface
 {
@@ -29,8 +29,6 @@ class VersionListener implements ListenerAggregateInterface
 
     /**
      * Determine if versioning is in the route matches, and update the controller accordingly
-     *
-     * @param MvcEvent $e
      */
     public function onRoute(MvcEvent $e)
     {

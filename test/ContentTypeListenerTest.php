@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\ApiTools\Versioning;
 
@@ -20,7 +16,7 @@ class ContentTypeListenerTest extends TestCase
     use EventListenerIntrospectionTrait;
     use RouteMatchFactoryTrait;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->event = new MvcEvent();
         $this->event->setRequest(new Request());
@@ -61,6 +57,7 @@ class ContentTypeListenerTest extends TestCase
         $this->assertNull($this->listener->onRoute($this->event));
     }
 
+    /** @return array */
     public function validDefaultContentTypes()
     {
         return [
@@ -81,6 +78,10 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider validDefaultContentTypes
+     * @param string $header
+     * @param string $vendor
+     * @param int $version
+     * @param string $resource
      */
     public function testInjectsRouteMatchesWhenContentTypeMatchesDefaultRegexp($header, $vendor, $version, $resource)
     {
@@ -95,6 +96,7 @@ class ContentTypeListenerTest extends TestCase
         $this->assertEquals($resource, $routeMatch->getParam('laminas_ver_resource', false));
     }
 
+    /** @return array */
     public function invalidDefaultContentTypes()
     {
         return [
@@ -107,6 +109,7 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider invalidDefaultContentTypes
+     * @param string $header
      */
     public function testInjectsNothingIntoRouteMatchesWhenContentTypeDoesNotMatchDefaultRegexp($header)
     {
@@ -121,6 +124,7 @@ class ContentTypeListenerTest extends TestCase
         $this->assertFalse($routeMatch->getParam('laminas_ver_resource', false));
     }
 
+    /** @return array */
     public function validCustomContentTypes()
     {
         return [
@@ -141,6 +145,10 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider validCustomContentTypes
+     * @param string $header
+     * @param string $vendor
+     * @param int $version
+     * @param string $resource
      */
     public function testWillInjectRouteMatchesWhenContentTypeMatchesCustomRegexp($header, $vendor, $version, $resource)
     {
@@ -159,6 +167,7 @@ class ContentTypeListenerTest extends TestCase
         $this->assertEquals($resource, $routeMatch->getParam('resource', false));
     }
 
+    /** @return array */
     public function mixedContentTypes()
     {
         return [
@@ -170,7 +179,7 @@ class ContentTypeListenerTest extends TestCase
                     'laminas_ver_resource' => 'status',
                 ],
             ],
-            'custom' => [
+            'custom'  => [
                 'application/vnd.mwop.1.status',
                 [
                     'vendor'   => 'mwop',
@@ -183,6 +192,8 @@ class ContentTypeListenerTest extends TestCase
 
     /**
      * @dataProvider mixedContentTypes
+     * @param string $header
+     * @param array $matches
      */
     public function testWillInjectRouteMatchesForFirstRegexpToMatch($header, array $matches)
     {

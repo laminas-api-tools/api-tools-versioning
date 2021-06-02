@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\ApiTools\Versioning;
 
@@ -14,6 +10,14 @@ use Laminas\EventManager\ListenerAggregateTrait;
 use Laminas\ModuleManager\Listener\ConfigListener;
 use Laminas\ModuleManager\ModuleEvent;
 use Laminas\Stdlib\ArrayUtils;
+
+use function array_shift;
+use function explode;
+use function in_array;
+use function is_array;
+use function is_scalar;
+use function strpos;
+use function strstr;
 
 class PrototypeRouteListener implements ListenerAggregateInterface
 {
@@ -43,7 +47,6 @@ class PrototypeRouteListener implements ListenerAggregateInterface
     /**
      * Attach listener to ModuleEvent::EVENT_MERGE_CONFIG
      *
-     * @param EventManagerInterface $events
      * @param int $priority
      */
     public function attach(EventManagerInterface $events, $priority = 1)
@@ -57,8 +60,6 @@ class PrototypeRouteListener implements ListenerAggregateInterface
      * Looks for api-tools-versioning.url and router configuration; if both present,
      * injects the route prototype and adds a chain route to each route listed
      * in the api-tools-versioning.url array.
-     *
-     * @param  ModuleEvent $e
      */
     public function onMergeConfig(ModuleEvent $e)
     {
@@ -70,14 +71,16 @@ class PrototypeRouteListener implements ListenerAggregateInterface
         $config = $configListener->getMergedConfig(false);
 
         // Check for config keys
-        if (! isset($config['api-tools-versioning'])
+        if (
+            ! isset($config['api-tools-versioning'])
             || ! isset($config['router'])
         ) {
             return;
         }
 
         // Do we need to inject a prototype?
-        if (! isset($config['api-tools-versioning']['uri'])
+        if (
+            ! isset($config['api-tools-versioning']['uri'])
             || ! is_array($config['api-tools-versioning']['uri'])
             || empty($config['api-tools-versioning']['uri'])
         ) {
@@ -85,7 +88,8 @@ class PrototypeRouteListener implements ListenerAggregateInterface
         }
 
         // Override default version of 1 with user-specified config value, if available.
-        if (isset($config['api-tools-versioning']['default_version'])
+        if (
+            isset($config['api-tools-versioning']['default_version'])
             && is_scalar($config['api-tools-versioning']['default_version'])
         ) {
             $this->versionRouteOptions['defaults']['version'] = $config['api-tools-versioning']['default_version'];
@@ -113,10 +117,12 @@ class PrototypeRouteListener implements ListenerAggregateInterface
                 continue;
             }
 
-            if (false === strpos(
-                $config['router']['routes'][$routeName]['options']['route'],
-                $this->versionRoutePrefix
-            )) {
+            if (
+                false === strpos(
+                    $config['router']['routes'][$routeName]['options']['route'],
+                    $this->versionRoutePrefix
+                )
+            ) {
                 $config['router']['routes'][$routeName]['options']['route'] = $this->versionRoutePrefix
                     . $config['router']['routes'][$routeName]['options']['route'];
             }

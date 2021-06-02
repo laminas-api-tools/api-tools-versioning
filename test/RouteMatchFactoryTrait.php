@@ -1,15 +1,13 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\ApiTools\Versioning;
 
 use Laminas\Mvc\Router\RouteMatch as V2RouteMatch;
 use Laminas\Router\RouteMatch;
+
+use function class_exists;
 
 trait RouteMatchFactoryTrait
 {

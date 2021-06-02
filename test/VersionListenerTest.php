@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-versioning for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-versioning/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-versioning/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\ApiTools\Versioning;
 
@@ -14,13 +10,15 @@ use Laminas\EventManager\Test\EventListenerIntrospectionTrait;
 use Laminas\Http\Request;
 use Laminas\Mvc\MvcEvent;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class VersionListenerTest extends TestCase
 {
     use EventListenerIntrospectionTrait;
+    use ProphecyTrait;
     use RouteMatchFactoryTrait;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->event = new MvcEvent();
         $this->event->setRouteMatch($this->createRouteMatch([]));
