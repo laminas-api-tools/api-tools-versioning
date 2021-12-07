@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.18.2@19aa905f7c3c7350569999a93c40ae91ae4e1626">
+<files psalm-version="v4.15.0@a1b5e489e6fcebe40cb804793d964e99fc347820">
   <file src="src/AcceptListener.php">
     <MixedArgument occurrences="1">
       <code>$regex</code>
@@ -29,6 +29,9 @@
     <MixedArgument occurrences="1">
       <code>$regexp</code>
     </MixedArgument>
+    <MixedArrayAccess occurrences="1">
+      <code>$config['api-tools-versioning']</code>
+    </MixedArrayAccess>
     <MixedAssignment occurrences="3">
       <code>$config</code>
       <code>$config</code>
@@ -39,6 +42,9 @@
     <MixedArgument occurrences="1">
       <code>$regexp</code>
     </MixedArgument>
+    <MixedArrayAccess occurrences="1">
+      <code>$config['api-tools-versioning']</code>
+    </MixedArrayAccess>
     <MixedAssignment occurrences="3">
       <code>$config</code>
       <code>$config</code>
@@ -73,56 +79,46 @@
       <code>getEventManager</code>
       <code>getServiceManager</code>
     </PossiblyInvalidMethodCall>
-    <RedundantConditionGivenDocblockType occurrences="1">
+    <RedundantConditionGivenDocblockType occurrences="2">
+      <code>$this-&gt;prototypeRouteListener</code>
       <code>$this-&gt;prototypeRouteListener</code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/PrototypeRouteListener.php">
-    <MixedArgument occurrences="5">
-      <code>$config</code>
+    <MixedArgument occurrences="3">
       <code>$config['router']['routes'][$routeName]['options']</code>
       <code>$config['router']['routes'][$routeName]['options']['route']</code>
       <code>$route</code>
-      <code>$route</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="9">
-      <code>$config['api-tools-versioning']</code>
-      <code>$config['api-tools-versioning']['default_version']</code>
+    <MixedArrayAccess occurrences="6">
       <code>$config['api-tools-versioning']['default_version']</code>
       <code>$config['api-tools-versioning']['uri']</code>
-      <code>$config['router']</code>
-      <code>$config['router']</code>
-      <code>$config['router']</code>
+      <code>$config['api-tools-versioning']['uri']</code>
       <code>$config['router']['routes']</code>
-      <code>$config['router']['routes']</code>
+      <code>$config['router']['routes'][$routeName]['options']</code>
+      <code>$config['router']['routes'][$routeName]['options']</code>
     </MixedArrayAccess>
     <MixedArrayAssignment occurrences="4">
-      <code>$config['router']</code>
-      <code>$config['router']</code>
+      <code>$config['router']['routes']</code>
+      <code>$config['router']['routes']</code>
       <code>$routeVersion['defaults']['version']</code>
       <code>$this-&gt;versionRouteOptions['defaults']['version']</code>
     </MixedArrayAssignment>
-    <MixedArrayOffset occurrences="8">
-      <code>$config['api-tools-versioning']['default_version'][$routeName]</code>
-      <code>$config['api-tools-versioning']['default_version'][$routeName]</code>
-      <code>$config['router']['routes'][$routeName]</code>
-      <code>$config['router']['routes'][$routeName]</code>
-      <code>$config['router']['routes'][$routeName]</code>
-      <code>$config['router']['routes'][$routeName]</code>
-      <code>$config['router']['routes'][$routeName]</code>
-      <code>$config['router']['routes'][$routeName]</code>
-    </MixedArrayOffset>
-    <MixedAssignment occurrences="6">
-      <code>$config</code>
-      <code>$filtered[]</code>
+    <MixedAssignment occurrences="4">
+      <code>$index</code>
       <code>$route</code>
-      <code>$routeName</code>
       <code>$routeVersion['defaults']['version']</code>
       <code>$routes</code>
     </MixedAssignment>
     <MixedOperand occurrences="1">
       <code>$config['router']['routes'][$routeName]['options']['route']</code>
     </MixedOperand>
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$config</code>
+    </PossiblyInvalidArgument>
+    <UnusedVariable occurrences="1">
+      <code>$index</code>
+    </UnusedVariable>
   </file>
   <file src="src/VersionListener.php">
     <MixedInferredReturnType occurrences="2">
