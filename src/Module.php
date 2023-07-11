@@ -8,7 +8,7 @@ use Laminas\ApiTools\Versioning\AcceptListener;
 use Laminas\ApiTools\Versioning\ContentTypeListener;
 use Laminas\ApiTools\Versioning\VersionListener;
 use Laminas\ModuleManager\ModuleManager;
-use Laminas\Mvc\Application;
+use Laminas\Mvc\ApplicationInterface;
 use Laminas\Mvc\MvcEvent;
 
 use function assert;
@@ -56,7 +56,7 @@ class Module
     public function onBootstrap($e)
     {
         $app = $e->getTarget();
-        assert($app instanceof Application);
+        assert($app instanceof ApplicationInterface);
         $events   = $app->getEventManager();
         $services = $app->getServiceManager();
         $services->get(AcceptListener::class)->attach($events);
