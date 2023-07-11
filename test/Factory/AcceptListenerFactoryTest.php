@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\ApiTools\Versioning\Factory;
 
-use Interop\Container\ContainerInterface;
+use interop\container\containerinterface;
 use Laminas\ApiTools\Versioning\AcceptListener;
 use Laminas\ApiTools\Versioning\Factory\AcceptListenerFactory;
 use PHPUnit\Framework\TestCase;
@@ -17,7 +17,7 @@ class AcceptListenerFactoryTest extends TestCase
 
     public function setUp(): void
     {
-        $this->container = $this->prophesize(ContainerInterface::class);
+        $this->container = $this->prophesize(containerinterface::class);
 
         $r                    = new ReflectionClass(AcceptListener::class);
         $props                = $r->getDefaultProperties();

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\ApiTools\Versioning\Factory;
 
-use Interop\Container\ContainerInterface;
+use interop\container\containerinterface;
 use Laminas\ApiTools\Versioning\ContentTypeListener;
 use Laminas\ApiTools\Versioning\Factory\ContentTypeListenerFactory;
 use PHPUnit\Framework\TestCase;
@@ -17,7 +17,7 @@ class ContentTypeListenerFactoryTest extends TestCase
 
     public function setUp(): void
     {
-        $this->container = $this->prophesize(ContainerInterface::class);
+        $this->container = $this->prophesize(containerinterface::class);
 
         $r                    = new ReflectionClass(ContentTypeListener::class);
         $props                = $r->getDefaultProperties();
