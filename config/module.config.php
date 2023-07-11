@@ -36,12 +36,6 @@ return [
         ],
     ],
     'service_manager'      => [
-        // Legacy Zend Framework aliases
-        'aliases'   => [
-            \ZF\Versioning\AcceptListener::class      => AcceptListener::class,
-            \ZF\Versioning\ContentTypeListener::class => ContentTypeListener::class,
-            \ZF\Versioning\VersionListener::class     => VersionListener::class,
-        ],
         'factories' => [
             AcceptListener::class      => Factory\AcceptListenerFactory::class,
             ContentTypeListener::class => Factory\ContentTypeListenerFactory::class,

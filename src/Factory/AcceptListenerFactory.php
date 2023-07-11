@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Laminas\ApiTools\Versioning\Factory;
 
-use Interop\Container\ContainerInterface;
 use Laminas\ApiTools\Versioning\AcceptListener;
+use Psr\Container\ContainerInterface;
 
 class AcceptListenerFactory
 {
